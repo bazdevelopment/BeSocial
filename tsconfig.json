@@ -3,7 +3,7 @@
     "target": "ES6",// Target environment. Most modern browsers support ES6, but you may want to set it to newer or older. (defaults to ES3)
     "module": "commonjs",
     "lib": [ "ESNext", "dom"], // specifies which default set of type definitions to use ("DOM", "ES6", etc)
-    "baseUrl": ".", // Lets you set a base directory to resolve non-absolute module names.
+    "baseUrl": "src", // Lets you set a base directory to resolve non-absolute module names.
     "outDir": "./build", // .js (as well as .d.ts, .js.map, etc.) files will be emitted into this directory.
     "rootDir": "src",
     "strict": true,
@@ -37,6 +37,9 @@
   "include": ["./**/*.ts"],
   "exclude": [
     "node_modules/**/*"
-  ]
+  ],
+
+
+
 }
 

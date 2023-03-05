@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { ENVIRONMENTS } from 'src/constants/environment';
+import { ENVIRONMENTS } from 'constants/environment';
 
 const notFound = (req: Request, res: Response, next: NextFunction): void => {
   const error: Error = new Error(`Not Found - ${req.originalUrl}`);

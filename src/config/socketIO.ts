@@ -2,7 +2,7 @@ import { Server } from 'socket.io';
 import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import { createServer } from 'http';
-import { HTTP_METHODS } from 'src/constants/httpMethods';
+import { HTTP_METHODS } from 'constants/httpMethods';
 
 export const createSocketIoServer = async (): Promise<Server> => {
   const httpServer = createServer();
