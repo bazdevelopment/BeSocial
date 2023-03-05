@@ -1,23 +1,12 @@
-import express, {
-  // Application,
-  json,
-  urlencoded,
-  // Response,
-  // Request,
-  // NextFunction,
-  Express,
-  Request,
-  Response
-} from 'express';
+import express, { json, urlencoded, Express, Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import cookieSession from 'cookie-session';
 import compression from 'compression';
-// import HTTP_STATUS from "http-status-codes";
 import 'express-async-errors';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import connectDB from './config/db';
 import { createSocketIoServer } from './config/socketIO';
 import { Server } from 'socket.io';
