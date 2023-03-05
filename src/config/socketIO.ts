@@ -4,6 +4,7 @@ import { createAdapter } from '@socket.io/redis-adapter';
 import { createServer } from 'http';
 import { HTTP_METHODS } from 'constants/httpMethods';
 
+/**Function used to make to connection between Redis and SocketIO */
 export const createSocketIoServer = async (): Promise<Server> => {
   const httpServer = createServer();
 

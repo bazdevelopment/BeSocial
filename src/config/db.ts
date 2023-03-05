@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+/**Function used to make to connection with MongoDB database */
 const connectDB = async (): Promise<void> => {
   if (!process.env.MONGO_DB_URI) {
     throw new Error('MongoDB URI not found in environment variables');
