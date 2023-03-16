@@ -10,9 +10,12 @@ import dotenv from 'dotenv';
 import connectDB from './config/db';
 import { createSocketIoServer } from './config/socketIO';
 import { Server } from 'socket.io';
-import { errorHandler, notFound } from './middleware/errorMiddleware';
+import { errorHandler, notFound } from './middleware/error-middleware';
 import { HTTP_METHODS } from './constants/httpMethods';
-
+import cloudinaryConfig from 'config/cloudinary';
+import authRoutes from './features/auth/routes/auth.routes';
+import { connectRedisCache } from 'shared/services/redis/redis.connection';
+import { serverAdapter } from 'shared/services/queues/base.queue';
 dotenv.config();
 const PORT = process.env.PORT;
 const app: Express = express();
@@ -30,6 +33,7 @@ app.use(compression());
  * json is a middleware function that parses incoming JSON payloads sent in the body of HTTP requests.
  * The limit option specifies the maximum size of the JSON payload that can be received by the server
  */
+
 app.use(json({ limit: '50mb' }));
 /**
  * This allows the application to handle incoming URL-encoded form data in HTTP requests up to the specified limit.\
@@ -63,15 +67,20 @@ app.use(hpp());
 app.use(helmet());
 /* Make sure that connection with MongoDB database is ready */
 connectDB();
-
+/* Make sure that connection with Redis server is ready */
+connectRedisCache();
+/* Make sure that connection with Cloudinary is ready */
+cloudinaryConfig();
 /* Make sure that connection with SocketIO and Redis is ready */
 createSocketIoServer().then((_io: Server) => {
-  console.log('⚡️ [SocketIO] SocketIO and Redis connection done ✅');
+  console.log('⚡️ [SocketIO] SocketIO & Redis connection done ✅');
 });
 /* Test if server is running */
 app.get('/', (_req: Request, res: Response) => {
   res.send('API IS RUNNING...');
 });
+app.use('/queues', serverAdapter.getRouter());
+app.use('/api/v1/auth', authRoutes);
 /* use Middleware for edge cases */
 app.use(notFound);
 app.use(errorHandler);
