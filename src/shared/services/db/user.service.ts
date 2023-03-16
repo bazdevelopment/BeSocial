@@ -6,7 +6,7 @@ export const UserService = {
   createUser: async (data: IUserDocument): Promise<void> => {
     await UserModel.create(data);
   },
-  getUserByUserId: async (userId: string | ObjectId): Promise<IUserDocument> => {
-    return (await UserModel.findById(userId)) as IUserDocument;
+  getUserByUserId: async (userId: string | ObjectId | undefined): Promise<IUserDocument> => {
+    return (await UserModel.findById(userId).lean()) as IUserDocument;
   }
 };

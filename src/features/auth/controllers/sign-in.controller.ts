@@ -42,7 +42,7 @@ const signIn = async (req: Request, res: Response): Promise<void> => {
   req.session = { jwt: userJwt };
   res.status(HTTP_STATUS.OK).json({
     message: 'User login successfully',
-    user: { email: existingUser.email, username: existingUser.username, ...user.toObject() },
+    user: { email: existingUser.email, username: existingUser.username, ...user },
     token: userJwt
   });
 };

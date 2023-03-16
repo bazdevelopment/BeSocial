@@ -3,7 +3,9 @@ import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { ExpressAdapter } from '@bull-board/express';
 import { createBullBoard } from '@bull-board/api';
 import { IAuthJob } from 'features/auth/interfaces/auth.interface';
+import { IUserJob } from 'features/user/interfaces/user.interface';
 
+type IBaseJobData = IAuthJob | IUserJob;
 /**
  * Function used for setting up a bull job queue
  * @param queueName
@@ -15,7 +17,7 @@ export const serverAdapter: ExpressAdapter = new ExpressAdapter();
 export const createBaseQueue = (
   queueName: string
 ): {
-  addJobToQueue: (jobName: string, data: any) => void;
+  addJobToQueue: (jobName: string, data: IBaseJobData) => void;
   processJob: (jobName: string, concurrency: number, callback: Queue.ProcessCallbackFunction<void>) => void;
 } => {
   /* initialize an empty array that will hold bull adapters for each queue. */
@@ -49,7 +51,7 @@ export const createBaseQueue = (
   });
 
   /* add the job to the queue and try 3 times if the process failed, and add a delay of 5 seconds between each attempt */
-  const addJobToQueue = (jobName: string, data: IAuthJob): void => {
+  const addJobToQueue = (jobName: string, data: IBaseJobData): void => {
     queue.add(jobName, data, { attempts: 3, backoff: { type: 'fixed', delay: 5000 } });
   };
 

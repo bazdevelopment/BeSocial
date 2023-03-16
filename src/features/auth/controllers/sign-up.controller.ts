@@ -53,6 +53,10 @@ const signUp = async (req: Request, res: Response): Promise<void> => {
   });
 };
 
+/**
+ * Function that encrypts the authentication data into a jwt token
+ * @param authData
+ */
 const generateSignToken = (authData: IAuthDocument): string => {
   return JWT.sign(
     {
@@ -76,8 +80,8 @@ const signupData = (data: ISignUpData): IAuthDocument => {
   return {
     _id,
     userId,
-    username: username,
-    email: email,
+    username,
+    email,
     password,
     avatarColor,
     createdAt: new Date()

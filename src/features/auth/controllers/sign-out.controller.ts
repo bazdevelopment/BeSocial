@@ -6,7 +6,7 @@ import HTTP_STATUS from 'http-status-codes';
  * @route POST api/v1/auth/signout
  * @access Public
  */
-export const signOut = async (req: Request, res: Response): Promise<void> => {
+export const signOut = (req: Request, res: Response): void => {
   req.session = null;
   res.status(HTTP_STATUS.OK).json({ message: 'Logout sucessfull', user: {}, token: '' });
 };

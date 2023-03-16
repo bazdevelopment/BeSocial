@@ -3,6 +3,9 @@ import { generateUniqueId } from 'shared/globals/helpers/generate-unique-id';
 import { parseJson } from 'shared/globals/helpers/parse-json';
 import { getRedisClient } from './redis.connection';
 
+/**
+ * Function that saves the registered user in the redis caches using hashes
+ */
 export const saveUserToCache = async (createdUser: IUserDocument) => {
   const createdAt = new Date();
   const uniqueNumberId: number = generateUniqueId();
@@ -66,7 +69,10 @@ export const saveUserToCache = async (createdUser: IUserDocument) => {
   }
 };
 
-export const getUserFromCache = async (userId: string): Promise<IUserDocument | null> => {
+/**
+ * Function that gets the user from the redis cache is exist
+ */
+export const getUserFromCache = async (userId: string | undefined): Promise<IUserDocument | null> => {
   try {
     const client = getRedisClient();
     if (!client.isOpen) {

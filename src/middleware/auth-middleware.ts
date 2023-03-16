@@ -3,8 +3,12 @@ import { NotAuthorizedError } from './error-middleware';
 import JWT from 'jsonwebtoken';
 import { IAuthPayload } from 'features/auth/interfaces/auth.interface';
 
+/**
+ * Function that checks if the user has a token assigned to his login session
+ * if no token is assigned, or if the token expired an error message will be returned
+ */
 const verifyUser = (req: Request, _res: Response, next: NextFunction): void => {
-  if (!req.session!.jwt) {
+  if (!req.session?.jwt) {
     return NotAuthorizedError('Token is not available. Please login again.');
   }
 
@@ -17,6 +21,9 @@ const verifyUser = (req: Request, _res: Response, next: NextFunction): void => {
   next();
 };
 
+/**
+ * Function that checks if the user is logged in based on the session
+ */
 const checkAuthentication = (req: Request, _res: Response, next: NextFunction): void => {
   if (!req.currentUser) {
     return NotAuthorizedError('Authentication is quired to access this route');
