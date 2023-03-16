@@ -9,14 +9,14 @@ import { IAuthPayload } from 'features/auth/interfaces/auth.interface';
  */
 const verifyUser = (req: Request, _res: Response, next: NextFunction): void => {
   if (!req.session?.jwt) {
-    return NotAuthorizedError('Token is not available. Please login again.');
+    return next(NotAuthorizedError('Token is not available. Please login again.'));
   }
 
   try {
-    const decodedUser: IAuthPayload = JWT.verify(req.session!.jwt, process.env.JWT_TOKEN!) as IAuthPayload;
-    req.currentUser = decodedUser;
+    const decodedUser: unknown = JWT.verify(req.session.jwt, process.env.JWT_TOKEN!);
+    req.currentUser = decodedUser as IAuthPayload;
   } catch (error) {
-    return NotAuthorizedError('Token is invalid. Please login again.');
+    return next(NotAuthorizedError('Token is invalid. Please login again.'));
   }
   next();
 };
@@ -26,7 +26,7 @@ const verifyUser = (req: Request, _res: Response, next: NextFunction): void => {
  */
 const checkAuthentication = (req: Request, _res: Response, next: NextFunction): void => {
   if (!req.currentUser) {
-    return NotAuthorizedError('Authentication is quired to access this route');
+    return next(NotAuthorizedError('Authentication is quired to access this route'));
   }
   next();
 };
