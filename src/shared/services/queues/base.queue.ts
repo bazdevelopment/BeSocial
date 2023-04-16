@@ -3,9 +3,9 @@ import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { ExpressAdapter } from '@bull-board/express';
 import { createBullBoard } from '@bull-board/api';
 import { IAuthJob } from 'features/auth/interfaces/auth.interface';
-import { IUserJob } from 'features/user/interfaces/user.interface';
+import { IEmailJob, IUserJob } from 'features/user/interfaces/user.interface';
 
-type IBaseJobData = IAuthJob | IUserJob;
+type IBaseJobData = IAuthJob | IUserJob | IEmailJob;
 /**
  * Function used for setting up a bull job queue
  * @param queueName

@@ -18,7 +18,7 @@ import { connectRedisCache } from 'shared/services/redis/redis.connection';
 import { serverAdapter } from 'shared/services/queues/base.queue';
 dotenv.config();
 const PORT = process.env.PORT;
-const app: Express = express();
+export const app: Express = express();
 
 /**
  * logging any request that is made to the server. E.g. GET / 304 4.140 ms - -

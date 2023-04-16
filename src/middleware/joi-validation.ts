@@ -10,7 +10,7 @@ export function joiValidation(schema: ObjectSchema): (req: Request, res: Respons
   return async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
     const { error } = await Promise.resolve(schema.validate(req.body));
     if (error?.details) {
-      return next(BadRequestError(error?.details[0]?.message));
+      BadRequestError(error?.details[0]?.message);
     }
     next();
   };

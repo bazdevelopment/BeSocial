@@ -22,7 +22,7 @@ const signUp = async (req: Request, res: Response): Promise<void> => {
 
   const userExist = await AuthModel.findOne({ email });
   if (userExist) {
-    return BadRequestError('User already exists 😢');
+    BadRequestError('User already exists 😢');
   }
 
   const userObjectId: ObjectId = new ObjectId();
@@ -32,7 +32,7 @@ const signUp = async (req: Request, res: Response): Promise<void> => {
   /* Upload avatar image to cloudinary after the account has been created successfully*/
   const result: UploadApiResponse = (await uploadFileToCloudinary(avatarImage, `${userObjectId}`, true, true)) as UploadApiResponse;
   if (!result?.public_id) {
-    return BadRequestError('File upload: Error occurred. Try again.');
+    BadRequestError('File upload: Error occurred. Try again.');
   }
 
   /* Add the new created user to redis cache */
