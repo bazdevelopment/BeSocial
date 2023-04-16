@@ -18,12 +18,12 @@ const signIn = async (req: Request, res: Response): Promise<void> => {
   const existingUser: IAuthDocument = await AuthService.getUserByEmail(email);
 
   if (!existingUser) {
-    return BadRequestError('Invalid credentials');
+    BadRequestError('Invalid credentials');
   }
 
   const passwordMatch = await existingUser.comparePassword(password);
   if (!passwordMatch) {
-    return BadRequestError('Invalid password');
+    BadRequestError('Invalid password');
   }
 
   const user: IUserDocument = await UserService.getUserByUserId(existingUser.userId);

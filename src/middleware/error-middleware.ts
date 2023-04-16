@@ -14,13 +14,14 @@ const notFound = (req: Request, res: Response, next: NextFunction): void => {
  * This function is used to catch any errors thrown from other handlers or middleware
  * returns the appropriate status code and error message. Based on if the environment is in production or not, it will send a stack trace along with the message.
  **/
-const errorHandler = (err: Error, _req: Request, res: Response): void => {
+const errorHandler = (err: Error, _req: Request, res: Response, next: NextFunction): void => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   res.status(statusCode);
   res.json({
     message: err.message,
     stack: process.env.NODE_ENV === ENVIRONMENTS.production ? null : err.stack
   });
+  next();
 };
 
 /**
