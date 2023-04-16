@@ -8,7 +8,7 @@ export const EmailWorker = {
   addNotificationEmail: async (job: Job, done: DoneCallback): Promise<void> => {
     try {
       const { template, receiverEmail, subject } = job.data;
-      sendEmail(receiverEmail, subject, template);
+      await sendEmail(receiverEmail, subject, template);
       job.progress(100);
       done(null, job.data);
     } catch (error) {

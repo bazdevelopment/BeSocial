@@ -67,7 +67,7 @@ export const updatePassword = async (req: Request, res: Response): Promise<void>
     };
     emailQueue().addEmailJob('forgotUserPassword', {
       template: resetPasswordTemplate(confirmationPasswordResetTemplate),
-      receiverEmail: existingUser?.email!,
+      receiverEmail: existingUser?.email,
       subject: 'Password reset confirmation'
     });
 

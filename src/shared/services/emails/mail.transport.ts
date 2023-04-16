@@ -14,7 +14,7 @@ const developmentEmailSender = async (receiverEmail: string, subject: string, bo
   /**
    * create reusable transporter object using the default SMTP transport
    */
-  let transporter: Mail = nodemailer.createTransport({
+  const transporter: Mail = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
     secure: false /* true for 465, false for other ports */,
@@ -33,9 +33,9 @@ const developmentEmailSender = async (receiverEmail: string, subject: string, bo
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`Development email sent successfully. ✅`);
+    console.log('Development email sent successfully. ✅');
   } catch (error) {
-    console.log(`[developmentEmailSender]`, error);
+    console.log('[developmentEmailSender]', error);
     // BadRequestError('Error sending email');
   }
 };
@@ -55,18 +55,18 @@ export const productionEmailSender = async (receiverEmail: string, subject: stri
 
   try {
     await sendGrid.send(mailOptions);
-    console.log(`Production email sent successfully.`);
+    console.log('Production email sent successfully.');
   } catch (error) {
-    console.log(`[productionEmailSender]`, error);
+    console.log('[productionEmailSender]', error);
     // BadRequestError('Error sending email');
   }
 };
 
-const sendEmail = (receiverEmail: string, subject: string, body: string) => {
+const sendEmail = async (receiverEmail: string, subject: string, body: string): Promise<void> => {
   if (process.env.NODE_ENV === ENVIRONMENTS.development) {
-    developmentEmailSender(receiverEmail, subject, body);
+    await developmentEmailSender(receiverEmail, subject, body);
   } else {
-    productionEmailSender(receiverEmail, subject, body);
+    await productionEmailSender(receiverEmail, subject, body);
   }
 };
 
