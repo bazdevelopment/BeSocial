@@ -61,7 +61,11 @@ export const productionEmailSender = async (receiverEmail: string, subject: stri
     // BadRequestError('Error sending email');
   }
 };
-
+/**
+ * Function for creating email html templates and sending to the used based on environemnt
+ * development - nodemailer
+ * production - sendGrid
+ */
 const sendEmail = async (receiverEmail: string, subject: string, body: string): Promise<void> => {
   if (process.env.NODE_ENV === ENVIRONMENTS.development) {
     await developmentEmailSender(receiverEmail, subject, body);
