@@ -14,8 +14,12 @@ import { errorHandler, notFound } from './middleware/error-middleware';
 import { HTTP_METHODS } from './constants/httpMethods';
 import cloudinaryConfig from 'config/cloudinary';
 import authRoutes from './features/auth/routes/auth.routes';
+import postsRoutes from './features/post/routes/post.routes';
+
 import { connectRedisCache } from 'shared/services/redis/redis.connection';
 import { serverAdapter } from 'shared/services/queues/base.queue';
+import { listenToSocketIoPost } from 'shared/sockets/post';
+/* Enabling .env file */
 dotenv.config();
 const PORT = process.env.PORT;
 export const app: Express = express();
@@ -72,15 +76,19 @@ connectRedisCache();
 /* Make sure that connection with Cloudinary is ready */
 cloudinaryConfig();
 /* Make sure that connection with SocketIO and Redis is ready */
-createSocketIoServer().then((_io: Server) => {
+createSocketIoServer().then((io: Server) => {
   console.log('⚡️ [SocketIO] SocketIO & Redis connection done ✅');
+  listenToSocketIoPost(io);
 });
+
 /* Test if server is running */
 app.get('/', (_req: Request, res: Response) => {
   res.send('API IS RUNNING...');
 });
 app.use('/queues', serverAdapter.getRouter());
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/posts', postsRoutes);
+
 /* use Middleware for edge cases */
 app.use(notFound);
 app.use(errorHandler);

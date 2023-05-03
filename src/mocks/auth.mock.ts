@@ -61,3 +61,10 @@ export interface IAuthMock {
   comments?: boolean;
   follows?: boolean;
 }
+
+export const authUserPayload: IAuthPayload = {
+  userId: '60263f14648fed5246e322d9',
+  username: 'Manny',
+  email: 'manny@me.com',
+  avatarColor: '#9c27b0'
+};

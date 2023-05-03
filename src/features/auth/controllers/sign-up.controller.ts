@@ -5,7 +5,7 @@ import { BadRequestError } from 'middleware/error-middleware';
 import { IAuthDocument, ISignUpData } from '../interfaces/auth.interface';
 import HTTP_STATUS from 'http-status-codes';
 import { UploadApiResponse } from 'cloudinary';
-import { uploadFileToCloudinary } from 'shared/globals/helpers/cloudinary-upload';
+import { uploadImageToCloudinary } from 'shared/globals/helpers/cloudinary-upload';
 import { IUserDocument } from 'features/user/interfaces/user.interface';
 import { saveUserToCache } from 'shared/services/redis/user.cache';
 import { authQueue } from 'shared/services/queues/auth.queue';
@@ -30,7 +30,7 @@ const signUp = async (req: Request, res: Response): Promise<void> => {
   const authData: IAuthDocument = signupData({ _id: userObjectId, userId: userObjectId, username, email, password, avatarColor });
 
   /* Upload avatar image to cloudinary after the account has been created successfully*/
-  const result: UploadApiResponse = (await uploadFileToCloudinary(avatarImage, `${userObjectId}`, true, true)) as UploadApiResponse;
+  const result: UploadApiResponse = (await uploadImageToCloudinary(avatarImage, `${userObjectId}`, true, true)) as UploadApiResponse;
   if (!result?.public_id) {
     BadRequestError('File upload: Error occurred. Try again.');
   }
