@@ -8,8 +8,11 @@ import { UploadApiResponse } from 'cloudinary';
 import { uploadImageToCloudinary, uploadVideoToCloudinary } from 'shared/globals/helpers/cloudinary-upload';
 import { BadRequestError } from 'middleware/error-middleware';
 
+/* Helper for uploading an image to cloudinary */
 const uploadImage = async (image: string) => (await uploadImageToCloudinary(image)) as UploadApiResponse;
+/* Helper for uploading an video to cloudinary */
 const uploadVideo = async (video: string) => (await uploadVideoToCloudinary(video)) as UploadApiResponse;
+
 /**
  * Function for updating a post without an image based on postId
  */
@@ -70,7 +73,7 @@ export const updatePostWithVideo = async (req: Request, res: Response): Promise<
 /**
  * Utility for updating a post
  */
-const updatePostUtil = async (req: Request): Promise<void> => {
+async function updatePostUtil(req: Request): Promise<void> {
   const socketIo = getIOInstance();
   const { post, bgColor, feelings, privacy, gifUrl, imgVersion, imgId, profilePicture, videoId, videoVersion } = req.body;
   const { postId } = req.params;
@@ -91,11 +94,11 @@ const updatePostUtil = async (req: Request): Promise<void> => {
   const postUpdated: IPostDocument = await updatePostInCache(postId!, updatedPost);
   socketIo.emit('update post', postUpdated, 'posts');
   PostQueue().addPostJob('updatePostInDB', { postId, updatedPost: postUpdated });
-};
+}
 /**
  * Utility for updating a post with images
  */
-const addImageToExistingPost = async (req: Request): Promise<UploadApiResponse> => {
+async function addImageToExistingPost(req: Request): Promise<UploadApiResponse> {
   //TODO :!rename this function since it handles both scenarios with image/video
   const { post, bgColor, feelings, privacy, gifUrl, profilePicture, image, video } = req.body;
   const { postId } = req.params;
@@ -130,4 +133,4 @@ const addImageToExistingPost = async (req: Request): Promise<UploadApiResponse> 
   // }
 
   return result;
-};
+}

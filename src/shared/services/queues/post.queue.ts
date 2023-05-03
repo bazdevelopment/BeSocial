@@ -2,14 +2,14 @@ import { createBaseQueue } from './base.queue';
 import { IPostJobData } from 'features/post/interfaces/post.interface';
 import { PostWorker } from 'shared/workers/post.worker';
 
-/**
- * Post queue
- */
 type AddPostJobFn = (jobName: string, data: IPostJobData) => void;
 
 type PostQueueReturnType = {
   addPostJob: AddPostJobFn;
 };
+/**
+ * Post queue
+ */
 export const PostQueue = (): PostQueueReturnType => {
   const { addJobToQueue, processJob } = createBaseQueue('POST');
 
