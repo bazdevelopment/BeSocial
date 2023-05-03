@@ -36,6 +36,16 @@ const BadRequestError = (message: string | undefined) => {
 
 /**
  * Helper method for displaying an error message
+ *  Status code :INTERNAL_SERVER_ERROR = 400
+ */
+export const ServerError = (message: string | undefined) => {
+  const error: CustomError = new Error(message);
+  error.statusCode = HTTP_STATUS.INTERNAL_SERVER_ERROR;
+  throw error;
+};
+
+/**
+ * Helper method for displaying an error message
  *  Status code : UNAUTHORIZED = 401
  */
 const NotAuthorizedError = (message: string | undefined) => {
