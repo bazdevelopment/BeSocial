@@ -40,7 +40,7 @@ export const getCommentsPostUserNames = async (req: Request, res: Response): Pro
     res.status(HTTP_STATUS.BAD_REQUEST).json({ message: 'Invalid request parameters.' });
     return;
   }
-  const cachedCommentsUserNames: ICommentNameList[] = await getPostCommentsNamesFromCache(postId!);
+  const cachedCommentsUserNames: ICommentNameList[] = await getPostCommentsNamesFromCache(postId);
 
   const commentsUserNames: ICommentNameList[] = cachedCommentsUserNames.length
     ? cachedCommentsUserNames
