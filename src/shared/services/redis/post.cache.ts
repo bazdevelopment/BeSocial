@@ -1,6 +1,5 @@
 import { IPostDocument } from 'features/post/interfaces/post.interface';
 import { getRedisClient } from './redis.connection';
-// import { generateUniqueId } from 'shared/globals/helpers/generate-unique-id';
 import { parseJson } from 'shared/globals/helpers/parse-json';
 import { ServerError } from 'middleware/error-middleware';
 

@@ -5,8 +5,9 @@ import { createBullBoard } from '@bull-board/api';
 import { IAuthJob } from 'features/auth/interfaces/auth.interface';
 import { IEmailJob, IUserJob } from 'features/user/interfaces/user.interface';
 import { IPostJobData } from 'features/post/interfaces/post.interface';
+import { IReactionJob } from 'features/reaction/interfaces/reaction.interface';
 
-type IBaseJobData = IAuthJob | IUserJob | IEmailJob | IPostJobData;
+type IBaseJobData = IAuthJob | IUserJob | IEmailJob | IPostJobData| IReactionJob
 /**
  * Function used for setting up a bull job queue
  * @param queueName
