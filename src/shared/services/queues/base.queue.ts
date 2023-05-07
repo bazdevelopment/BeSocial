@@ -6,8 +6,9 @@ import { IAuthJob } from 'features/auth/interfaces/auth.interface';
 import { IEmailJob, IUserJob } from 'features/user/interfaces/user.interface';
 import { IPostJobData } from 'features/post/interfaces/post.interface';
 import { IReactionJob } from 'features/reaction/interfaces/reaction.interface';
+import { ICommentJob } from 'features/comment/interfaces/comment.interface';
 
-type IBaseJobData = IAuthJob | IUserJob | IEmailJob | IPostJobData| IReactionJob
+type IBaseJobData = IAuthJob | IUserJob | IEmailJob | IPostJobData | IReactionJob | ICommentJob;
 /**
  * Function used for setting up a bull job queue
  * @param queueName
