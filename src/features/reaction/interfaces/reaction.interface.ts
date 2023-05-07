@@ -20,3 +20,23 @@ export interface IReactions {
   sad: number;
   angry: number;
 }
+
+export interface IReactionJob {
+  postId: string;
+  username: string;
+  previousReaction: string;
+  userTo?: string;
+  userFrom?: string;
+  type?: string;
+  reactionObject?: IReactionDocument;
+}
+
+export interface IQueryReaction {
+  _id?: string | ObjectId;
+  postId?: string | ObjectId;
+}
+
+export interface IReaction {
+  senderName: string;
+  type: string;
+}
