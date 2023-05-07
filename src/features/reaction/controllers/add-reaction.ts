@@ -5,13 +5,17 @@ import { IReactionDocument, IReactionJob } from '../interfaces/reaction.interfac
 import { savePostReactionToCache } from 'shared/services/redis/reaction.cache';
 import { ReactionQueue } from 'shared/services/queues/reaction.queue';
 
+/**
+ * Add reaction controller user for adding a reaction to a post
+ * the reaction is saved first in redis cache, then we populate the mongoDB database
+ */
 export const addReaction = async (req: Request, res: Response): Promise<void> => {
   const { postId, type, userTo, previousReaction, postReactions, profilePicture } = req.body;
   const reaction: IReactionDocument = {
     postId,
     type,
-    avatarColor: req.currentUser?.avatarColor!,
-    username: req.currentUser?.username!,
+    avatarColor: req.currentUser?.avatarColor,
+    username: req.currentUser?.username,
     profilePicture
   } as unknown as IReactionDocument;
 

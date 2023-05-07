@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 export const ReactionService = {
   addReactionDataToDB: async (reactionData: IReactionJob): Promise<void> => {
     const { postId, username, previousReaction, userTo, type, reactionObject } = reactionData;
-    let updatedReactionObject: IReactionDocument = reactionObject as IReactionDocument;
+    const updatedReactionObject: IReactionDocument = reactionObject as IReactionDocument;
     /* if previous reaction exist do not replace the id of the reaction from mongoDB */
     if (previousReaction) {
       delete updatedReactionObject._id;

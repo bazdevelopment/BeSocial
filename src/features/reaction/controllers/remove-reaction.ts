@@ -8,12 +8,16 @@ import { removePostReactionFromCache } from 'shared/services/redis/reaction.cach
 export const removeReaction = async (req: Request, res: Response): Promise<void> => {
   /* req.params returns only strings */
   const { postId, previousReaction, postReactions } = req.params;
-
+  if (!postId || !postReactions || !req.currentUser?.username) {
+    // Return an error response or throw an error
+    res.status(HTTP_STATUS.BAD_REQUEST).json({ message: 'Invalid request parameters.' });
+    return;
+  }
   /* remove post reaction from redis */
   await removePostReactionFromCache({
-    key: postId!,
-    username: req.currentUser?.username!,
-    postReactions: JSON.parse(postReactions!)
+    key: postId,
+    username: req.currentUser?.username,
+    postReactions: JSON.parse(postReactions)
   });
 
   const databaseReactionData: IReactionJob = {

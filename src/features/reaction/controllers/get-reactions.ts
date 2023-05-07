@@ -11,7 +11,10 @@ import { IReactionDocument } from '../interfaces/reaction.interface';
  */
 export const getReactionsForParticularPost = async (req: Request, res: Response): Promise<void> => {
   const { postId } = req.params;
-  const cachedReactions: { reactions: IReactionDocument[]; numberOfReactions: number } = await getReactionsFromCache(postId!);
+  const cachedReactions: { reactions: IReactionDocument[]; numberOfReactions: number } = postId
+    ? await getReactionsFromCache(postId)
+    : { reactions: [], numberOfReactions: 0 };
+
   const reactions: { reactions: IReactionDocument[]; numberOfReactions: number } = cachedReactions.reactions.length
     ? cachedReactions
     : await ReactionService.getPostReactions({ postId: new mongoose.Types.ObjectId(postId) as unknown as ObjectId }, { createdAt: -1 });
@@ -27,12 +30,12 @@ export const getReactionsForParticularPost = async (req: Request, res: Response)
 export const getSingleReactionByUsername = async (req: Request, res: Response): Promise<void> => {
   const { postId, username } = req.params;
   const cachedReactions: { reactions: IReactionDocument; numberOfReactions: number } = await getSingleReactionByUsernameFromCache(
-    postId!,
-    username!
+    postId ?? '',
+    username ?? ''
   );
 
   const reactionsList: { reactions: IReactionDocument[]; numberOfReactions: number } = (
-    cachedReactions.reactions ? cachedReactions : await ReactionService.getSinglePostReactionByUsername(postId!, username!)
+    cachedReactions.reactions ? cachedReactions : await ReactionService.getSinglePostReactionByUsername(postId ?? '', username ?? '')
   ) as { reactions: IReactionDocument[]; numberOfReactions: number };
 
   res.status(HTTP_STATUS.OK).json({
@@ -48,7 +51,7 @@ export const getSingleReactionByUsername = async (req: Request, res: Response): 
  */
 export const getReactionsByUsername = async (req: Request, res: Response): Promise<void> => {
   const { username } = req.params;
-  const reactions: IReactionDocument[] = await ReactionService.getReactionsByUsername(username!);
+  const reactions: IReactionDocument[] = !!username ? await ReactionService.getReactionsByUsername(username) : [];
 
   res.status(HTTP_STATUS.OK).json({
     message: 'All user reactions by username !',
