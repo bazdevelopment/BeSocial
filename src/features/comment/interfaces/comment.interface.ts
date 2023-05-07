@@ -10,3 +10,24 @@ export interface ICommentDocument extends Document {
   createdAt?: Date;
   userTo?: string | ObjectId;
 }
+export interface ICommentJob {
+  postId: string;
+  userTo: string;
+  userFrom: string;
+  username: string;
+  comment: ICommentDocument;
+}
+
+export interface ICommentNameList {
+  count: number /* number of comments for a post */;
+  names: string[] /* name of the users the leave a comment */;
+}
+
+export interface IQueryComment {
+  _id?: string | ObjectId;
+  postId?: string | ObjectId;
+}
+
+export interface IQuerySort {
+  createdAt?: number;
+}

@@ -16,6 +16,7 @@ import cloudinaryConfig from 'config/cloudinary';
 import authRoutes from './features/auth/routes/auth.routes';
 import postsRoutes from './features/post/routes/post.routes';
 import postReactionRoutes from './features/reaction/routes/reaction.routes';
+import postCommentRoutes from './features/comment/routes/comment.routes';
 
 import { connectRedisCache } from 'shared/services/redis/redis.connection';
 import { serverAdapter } from 'shared/services/queues/base.queue';
@@ -90,6 +91,7 @@ app.use('/queues', serverAdapter.getRouter());
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/posts', postsRoutes);
 app.use('/api/v1/reaction', postReactionRoutes);
+app.use('/api/v1/comment', postCommentRoutes);
 
 /* use Middleware for edge cases */
 app.use(notFound);
