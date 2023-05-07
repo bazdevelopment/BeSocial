@@ -15,8 +15,12 @@ import { CommentService } from 'shared/services/db/comment.service';
  */
 export const getCommentsForPost = async (req: Request, res: Response): Promise<void> => {
   const { postId } = req.params;
+  if (!postId) {
+    res.status(HTTP_STATUS.BAD_REQUEST).json({ message: 'Invalid request parameters.' });
+    return;
+  }
 
-  const cachedComments: ICommentDocument[] = await getPostCommentsFromCache(postId!);
+  const cachedComments: ICommentDocument[] = await getPostCommentsFromCache(postId);
 
   const comments: ICommentDocument[] = cachedComments.length
     ? cachedComments
@@ -31,7 +35,11 @@ export const getCommentsForPost = async (req: Request, res: Response): Promise<v
  */
 export const getCommentsPostUserNames = async (req: Request, res: Response): Promise<void> => {
   const { postId } = req.params;
-
+  if (!postId) {
+    // Return an error response or throw an error
+    res.status(HTTP_STATUS.BAD_REQUEST).json({ message: 'Invalid request parameters.' });
+    return;
+  }
   const cachedCommentsUserNames: ICommentNameList[] = await getPostCommentsNamesFromCache(postId!);
 
   const commentsUserNames: ICommentNameList[] = cachedCommentsUserNames.length
@@ -52,8 +60,13 @@ export const getCommentsPostUserNames = async (req: Request, res: Response): Pro
  */
 export const getSingleComment = async (req: Request, res: Response): Promise<void> => {
   const { postId, commentId } = req.params;
+  if (!postId || !commentId) {
+    // Return an error response or throw an error
+    res.status(HTTP_STATUS.BAD_REQUEST).json({ message: 'Invalid request parameters.' });
+    return;
+  }
 
-  const cachedComments: ICommentDocument[] = await getSinglePostCommentFromCache(postId!, commentId!);
+  const cachedComments: ICommentDocument[] = await getSinglePostCommentFromCache(postId, commentId);
 
   const comments: ICommentDocument[] = cachedComments.length
     ? cachedComments
