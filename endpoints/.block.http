@@ -1,0 +1,19 @@
+@baseURL=http://localhost:8000
+
+@urlPath=api/v1/blocked
+
+
+
+
+### block user endpoint
+PUT {{baseURL}}/{{urlPath}}/user/block/645888f6a8d043efedff0edb
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+### unblock user endpoint
+PUT {{baseURL}}/{{urlPath}}/user/unblock/645888f6a8d043efedff0edb
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+

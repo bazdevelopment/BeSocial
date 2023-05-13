@@ -7,8 +7,9 @@ import { IEmailJob, IUserJob } from 'features/user/interfaces/user.interface';
 import { IPostJobData } from 'features/post/interfaces/post.interface';
 import { IReactionJob } from 'features/reaction/interfaces/reaction.interface';
 import { ICommentJob } from 'features/comment/interfaces/comment.interface';
+import { IBlockedUserJobData, IFollowerJobData } from 'features/follower/interface/follower.interface';
 
-type IBaseJobData = IAuthJob | IUserJob | IEmailJob | IPostJobData | IReactionJob | ICommentJob;
+type IBaseJobData = IAuthJob | IUserJob | IEmailJob | IPostJobData | IReactionJob | ICommentJob | IFollowerJobData | IBlockedUserJobData;
 /**
  * Function used for setting up a bull job queue
  * @param queueName
