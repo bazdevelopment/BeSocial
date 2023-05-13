@@ -18,7 +18,7 @@ export const blockUser = async (req: Request, res: Response): Promise<void> => {
   await updateBlockedUser(followerId, req.currentUser.userId, BLOCK_UNBLOCK_ACTION.BLOCK);
   BlockedUserQueue().addBlockOrUnblockUserJob('addBlockedUserToDB', {
     loggedInUserId: req.currentUser.userId,
-    followerId: followerId,
+    followerId,
     type: BLOCK_UNBLOCK_ACTION.BLOCK
   });
 
@@ -39,7 +39,7 @@ export const unblockUser = async (req: Request, res: Response): Promise<void> =>
   await updateBlockedUser(followerId, req.currentUser.userId, BLOCK_UNBLOCK_ACTION.UNBLOCK);
   BlockedUserQueue().addBlockOrUnblockUserJob('addBlockedUserToDB', {
     loggedInUserId: req.currentUser.userId,
-    followerId: followerId,
+    followerId,
     type: BLOCK_UNBLOCK_ACTION.UNBLOCK
   });
 

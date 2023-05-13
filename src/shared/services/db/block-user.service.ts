@@ -7,7 +7,7 @@ export const BlockOrUnblockUserService = {
    * update the necessary fields from user in mongoDB when a used is being blocked = blocked & blockedBy
    */
   blockUser: async (userId: string, followerId: string): Promise<void> => {
-    UserModel.bulkWrite([
+    await UserModel.bulkWrite([
       {
         updateOne: {
           filter: { _id: userId, blocked: { $ne: new mongoose.Types.ObjectId(followerId) } },
@@ -34,7 +34,7 @@ export const BlockOrUnblockUserService = {
    * update the necessary fields from user in mongoDB when a used is being unblocked = blocked & blockedBy
    */
   unblockUser: async (userId: string, followerId: string): Promise<void> => {
-    UserModel.bulkWrite([
+    await UserModel.bulkWrite([
       {
         updateOne: {
           filter: { _id: userId },

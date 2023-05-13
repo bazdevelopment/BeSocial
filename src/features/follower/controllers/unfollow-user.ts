@@ -16,10 +16,10 @@ export const unfollowUser = async (req: Request, res: Response): Promise<void> =
   const updateFollowersFromCache: Promise<void> = removeFollowerFromCache(`followers:${followeeId}`, followerId);
   const updateFollowingFromCache: Promise<void> = removeFollowerFromCache(`following:${req.currentUser?.userId}`, followeeId);
 
-  const updateUserFollowerCountCache: Promise<void> = updateFollowersCountInCache(followeeId!, 'followersCount', -1);
-  const updateUserFolloweeCountCache: Promise<void> = updateFollowersCountInCache(followerId!, 'followingCount', -1);
+  const updateUserFollowerCountCache: Promise<void> = updateFollowersCountInCache(followeeId, 'followersCount', -1);
+  const updateUserFolloweeCountCache: Promise<void> = updateFollowersCountInCache(followerId, 'followingCount', -1);
 
   await Promise.all([updateFollowersFromCache, updateFollowingFromCache, updateUserFollowerCountCache, updateUserFolloweeCountCache]);
-  followQueue().addFollowJob('removeFollowerFromDB', { userId: followerId!, followeeId: followeeId as string });
+  followQueue().addFollowJob('removeFollowerFromDB', { userId: followerId, followeeId: followeeId as string });
   res.status(HTTP_STATUS.OK).json({ message: 'Unfollow user now!' });
 };

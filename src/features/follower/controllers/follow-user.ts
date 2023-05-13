@@ -27,7 +27,7 @@ export const followUser = async (req: Request, res: Response): Promise<void> => 
   await Promise.all([followersCount, followingCount]);
   /* get updated users from redis cache */
   const cachedFollowerUser: Promise<IUserDocument> = getUserFromCache(followerId) as Promise<IUserDocument>;
-  const cachedFollowingUser: Promise<IUserDocument> = getUserFromCache(req.currentUser?.userId) as Promise<IUserDocument>;
+  const cachedFollowingUser: Promise<IUserDocument> = getUserFromCache(req.currentUser.userId) as Promise<IUserDocument>;
   const usersFromCache = await Promise.all([cachedFollowerUser, cachedFollowingUser]);
   const addFollowerData = getUserData(usersFromCache[0]);
   /* emit an add follower event with follower data, which is going to be sent on the FE */
@@ -39,9 +39,9 @@ export const followUser = async (req: Request, res: Response): Promise<void> => 
 
   /* save new follower to mongoDB  */
   followQueue().addFollowJob('addFollowerToDB', {
-    userId: req.currentUser?.userId,
+    userId: req.currentUser.userId,
     followeeId: followerId,
-    username: req.currentUser?.username,
+    username: req.currentUser.username,
     followerDocumentId: new ObjectId()
   });
 
