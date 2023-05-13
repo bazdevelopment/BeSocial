@@ -17,10 +17,14 @@ import authRoutes from './features/auth/routes/auth.routes';
 import postsRoutes from './features/post/routes/post.routes';
 import postReactionRoutes from './features/reaction/routes/reaction.routes';
 import postCommentRoutes from './features/comment/routes/comment.routes';
+import userFollowRoutes from './features/follower/routes/follower.routes';
+import userBlockRoutes from './features/block/routes/block.routes';
 
 import { connectRedisCache } from 'shared/services/redis/redis.connection';
 import { serverAdapter } from 'shared/services/queues/base.queue';
 import { listenToSocketIoPost } from 'shared/sockets/post';
+import { listenToSocketIoFollower } from 'shared/sockets/follower';
+import { listenToSocketIoUser } from 'shared/sockets/user';
 /* Enabling .env file */
 dotenv.config();
 const PORT = process.env.PORT;
@@ -81,6 +85,8 @@ cloudinaryConfig();
 createSocketIoServer().then((io: Server) => {
   console.log('⚡️ [SocketIO] SocketIO & Redis connection done ✅');
   listenToSocketIoPost(io);
+  listenToSocketIoFollower(io);
+  listenToSocketIoUser(io);
 });
 
 /* Test if server is running */
@@ -92,6 +98,8 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/posts', postsRoutes);
 app.use('/api/v1/reaction', postReactionRoutes);
 app.use('/api/v1/comment', postCommentRoutes);
+app.use('/api/v1/follow', userFollowRoutes);
+app.use('/api/v1/blocked', userBlockRoutes);
 
 /* use Middleware for edge cases */
 app.use(notFound);
