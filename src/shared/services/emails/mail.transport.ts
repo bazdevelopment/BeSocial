@@ -4,6 +4,7 @@ import Mail from 'nodemailer/lib/mailer';
 import { IMailOptions } from './mail.interface';
 // import { BadRequestError } from 'middleware/error-middleware';
 import { ENVIRONMENTS } from 'constants/environment';
+import { ServerError } from 'middleware/error-middleware';
 
 /**
  * Method used to send an email to a specific email address
@@ -36,7 +37,7 @@ const developmentEmailSender = async (receiverEmail: string, subject: string, bo
     console.log('Development email sent successfully. ✅');
   } catch (error) {
     console.log('[developmentEmailSender]', error);
-    // BadRequestError('Error sending email');
+    ServerError('Error sending email');
   }
 };
 
