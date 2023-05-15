@@ -70,7 +70,7 @@ export const FollowService = {
       socketIo.emit('insert notification', notifications, { userTo: followeeId });
       /* prepare the email template*/
       const emailTemplate: INotificationTemplate = {
-        username: followee.username!,
+        username: followee.username as string,
         message: `${username} is not following you`,
         header: 'Follower notification'
       };
@@ -78,7 +78,7 @@ export const FollowService = {
 
       /** send an email to the followee that a user if following him */
       emailQueue().addEmailJob('followerEmail', {
-        receiverEmail: followee.email!,
+        receiverEmail: followee.email as string,
         template,
         subject: `${username} is now following you.`
       });
