@@ -46,10 +46,10 @@ export const CommentService = {
         createdItemId: new mongoose.Types.ObjectId(commentResponse._id?.toString()),
         comment: commentResponse.comment,
         reaction: '',
-        post: postUpdatedResponse._id!,
-        imgId: postUpdatedResponse.imgId!,
-        imgVersion: postUpdatedResponse.imgVersion!,
-        gifUrl: postUpdatedResponse.gifUrl!,
+        post: postUpdatedResponse._id as string,
+        imgId: postUpdatedResponse.imgId as string,
+        imgVersion: postUpdatedResponse.imgVersion as string,
+        gifUrl: postUpdatedResponse.gifUrl as string,
         createdAt: new Date()
       });
 
