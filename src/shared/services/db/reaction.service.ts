@@ -3,18 +3,27 @@ import { getUserFromCache } from '../redis/user.cache';
 import { ReactionModel } from 'features/reaction/models/reaction.model';
 import { PostModel } from 'features/post/models/Post.model';
 import mongoose from 'mongoose';
+import { INotificationDocument, INotificationTemplate } from 'features/notification/interfaces/notification.interface';
+import { NotificationModel } from 'features/notification/models/notification.model';
+import { notificationTemplate } from '../emails/templates/notifications/notification-template';
+import { emailQueue } from '../queues/email.queue';
+import { getIOInstance } from 'config/socketIO';
+import { IUserDocument } from 'features/user/interfaces/user.interface';
+import { IPostDocument } from 'features/post/interfaces/post.interface';
 
 export const ReactionService = {
   addReactionDataToDB: async (reactionData: IReactionJob): Promise<void> => {
-    const { postId, username, previousReaction, userTo, type, reactionObject } = reactionData;
+    const socketIo = getIOInstance();
+    const { postId, username, previousReaction, userTo, userFrom, type, reactionObject } = reactionData;
+
     const updatedReactionObject: IReactionDocument = reactionObject as IReactionDocument;
     /* if previous reaction exist do not replace the id of the reaction from mongoDB */
     if (previousReaction) {
       delete updatedReactionObject._id;
     }
-    // const updatedReaction =
-    await Promise.all([
-      getUserFromCache(`${userTo}`),
+    /** TODO: reactionUpdated should have type UpdateResult instead of any  */
+    const [userInfo, reactionUpdated, postUpdated]: [IUserDocument | null, any, IPostDocument | null] = await Promise.all([
+      getUserFromCache(userTo),
       /* Replace reaction document in DB if exists, if not, based on upsert:true, create a new document */
       ReactionModel.replaceOne({ postId, type: previousReaction, username }, updatedReactionObject, { upsert: true }),
       /* Find the post and decrement previous reaction and increment the new one */
@@ -30,6 +39,41 @@ export const ReactionService = {
       )
     ]);
     /**Send reaction notification */
+
+    if (userInfo?.notifications.reactions && userTo !== userFrom) {
+      const notificationModel: INotificationDocument = new NotificationModel();
+      const notifications = await notificationModel.insertNotification({
+        userFrom: userFrom as string,
+        userTo: userTo as string,
+        message: `${username} reacted to your post!`,
+        notificationType: 'reactions',
+        entityId: new mongoose.Types.ObjectId(postId),
+        createdItemId: new mongoose.Types.ObjectId(reactionUpdated._id),
+        createdAt: new Date(),
+        comment: '',
+        post: postUpdated?.post as string,
+        imgId: postUpdated?.imgId as string,
+        imgVersion: postUpdated?.imgVersion as string,
+        gifUrl: postUpdated?.gifUrl as string,
+        reaction: type as string
+      });
+      /* send notification via socket io */
+      socketIo.emit('insert notification', notifications, { userTo });
+
+      const emailTemplate: INotificationTemplate = {
+        username: userInfo.username as string,
+        message: `${username} is not following you`,
+        header: 'Post reaction notification'
+      };
+      const template: string = notificationTemplate(emailTemplate);
+
+      /** send an email to the user whose post received a reaction*/
+      emailQueue().addEmailJob('reactionsEmail', {
+        receiverEmail: userInfo.email as string,
+        template,
+        subject: `${username} is now following you.`
+      });
+    }
   },
 
   removeReactionDataFromDB: async (reactionData: IReactionJob): Promise<void> => {

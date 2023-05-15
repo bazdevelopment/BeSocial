@@ -23,7 +23,7 @@ Accept: application/json
 withCredentials:true
 
 {
-  "email":"mada@yahoo.com",
+  "email":"Mircea@yahoo.com",
   "password":"1234"
 }
 
