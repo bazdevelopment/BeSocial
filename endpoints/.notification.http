@@ -3,6 +3,12 @@
 @urlPath=api/v1/notification
 
 
+### GET all the notifications for the logged in user endpoint
+GET {{baseURL}}/{{urlPath}}
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
 ### read notification endpoint
 PUT {{baseURL}}/{{urlPath}}/6461b2a86f08a4b7a5269581
 Content-Type: application/json

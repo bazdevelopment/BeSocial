@@ -21,6 +21,7 @@ export const ReactionService = {
     if (previousReaction) {
       delete updatedReactionObject._id;
     }
+    /** TODO: reactionUpdated should have type UpdateResult instead of any  */
     const [userInfo, reactionUpdated, postUpdated]: [IUserDocument | null, any, IPostDocument | null] = await Promise.all([
       getUserFromCache(userTo),
       /* Replace reaction document in DB if exists, if not, based on upsert:true, create a new document */
@@ -50,17 +51,17 @@ export const ReactionService = {
         createdItemId: new mongoose.Types.ObjectId(reactionUpdated._id),
         createdAt: new Date(),
         comment: '',
-        post: postUpdated?.post!,
-        imgId: postUpdated?.imgId!,
-        imgVersion: postUpdated?.imgVersion!,
-        gifUrl: postUpdated?.gifUrl!,
-        reaction: type!
+        post: postUpdated?.post as string,
+        imgId: postUpdated?.imgId as string,
+        imgVersion: postUpdated?.imgVersion as string,
+        gifUrl: postUpdated?.gifUrl as string,
+        reaction: type as string
       });
       /* send notification via socket io */
       socketIo.emit('insert notification', notifications, { userTo });
 
       const emailTemplate: INotificationTemplate = {
-        username: userInfo.username!,
+        username: userInfo.username as string,
         message: `${username} is not following you`,
         header: 'Post reaction notification'
       };
@@ -68,7 +69,7 @@ export const ReactionService = {
 
       /** send an email to the user whose post received a reaction*/
       emailQueue().addEmailJob('reactionsEmail', {
-        receiverEmail: userInfo.email!,
+        receiverEmail: userInfo.email as string,
         template,
         subject: `${username} is now following you.`
       });

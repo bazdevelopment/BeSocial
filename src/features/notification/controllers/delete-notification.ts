@@ -6,7 +6,7 @@ import { NotificationQueue } from 'shared/services/queues/notification.queue';
  * deleteNotification
  * This controller function is responsible for deleting a notification.
  */
-export const deleteNotification = async (req: Request, res: Response) => {
+export const deleteNotification = (req: Request, res: Response) => {
   const socketIo = getIOInstance();
   const { notificationId } = req.params;
   if (!notificationId) {
