@@ -11,7 +11,7 @@ import { BadRequestError } from 'middleware/error-middleware';
  * deleteProfilePicture controller
  * used to remove the profile picture for a specific user
  */
-export const deleteProfilePicture = async (req: Request, res: Response): Promise<void> => {
+export const deleteProfilePicture = (req: Request, res: Response): void => {
   const socketIo = getIOInstance();
   const { imageId } = req.params;
   socketIo.emit('delete profile picture', imageId);
