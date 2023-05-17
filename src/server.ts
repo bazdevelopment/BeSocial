@@ -20,6 +20,7 @@ import postCommentRoutes from './features/comment/routes/comment.routes';
 import userFollowRoutes from './features/follower/routes/follower.routes';
 import userBlockRoutes from './features/block/routes/block.routes';
 import notificationRoutes from './features/notification/routes/notification.routes';
+import imagesRoutes from './features/image/routes/image.routes';
 
 import { connectRedisCache } from 'shared/services/redis/redis.connection';
 import { serverAdapter } from 'shared/services/queues/base.queue';
@@ -102,6 +103,7 @@ app.use('/api/v1/comment', postCommentRoutes);
 app.use('/api/v1/follow', userFollowRoutes);
 app.use('/api/v1/blocked', userBlockRoutes);
 app.use('/api/v1/notification', notificationRoutes);
+app.use('/api/v1/images', imagesRoutes);
 
 /* use Middleware for edge cases */
 app.use(notFound);

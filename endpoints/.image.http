@@ -1,0 +1,44 @@
+@baseURL=http://localhost:8000
+
+@urlPath=api/v1/images
+
+
+### Fetch all the images for a specific user endpoint
+GET {{baseURL}}/{{urlPath}}/64588902a8d043efedff0ee2
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+
+### Change user profile picture endpoint
+POST {{baseURL}}/{{urlPath}}/profile
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+}
+
+### Change user background picture endpoint
+POST {{baseURL}}/{{urlPath}}/background
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+}
+
+
+### Delete profile picture endpoint
+DELETE {{baseURL}}/{{urlPath}}/profile/64646119539bb4aa47e45018
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+### Delete background image endpoint
+DELETE {{baseURL}}/{{urlPath}}/background/bm89vfrjjd7179ov9ni4
+Content-Type: application/json
+Accept: application/json
+withCredentials:true

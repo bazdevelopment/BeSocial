@@ -2,6 +2,7 @@ import { IUserDocument } from 'features/user/interfaces/user.interface';
 import { generateUniqueId } from 'shared/globals/helpers/generate-unique-id';
 import { parseJson } from 'shared/globals/helpers/parse-json';
 import { getRedisClient } from './redis.connection';
+import { ServerError } from 'middleware/error-middleware';
 
 /**
  * Function that saves the registered user in the redis caches using hashes
@@ -91,5 +92,26 @@ export const getUserFromCache = async (userId: string | undefined): Promise<IUse
   } catch (error) {
     console.log('[user.cache] : Server error');
     return null;
+  }
+};
+
+/**
+ * Function update a specific property for user document in user redis cache
+ */
+export const updatePropertyInUserCache = async (userId: string, propertyName: string, propertyValue: string): Promise<IUserDocument> => {
+  try {
+    const client = getRedisClient();
+    if (!client.isOpen) {
+      await client.connect();
+    }
+    const dataToSave: string[] = [`${propertyName}`, JSON.stringify(propertyValue)];
+    /* update the user in cache with property provided */
+    await client.HSET(`users:${userId}`, dataToSave);
+    /* fetch again the new updated user document from redis cache*/
+    const response: IUserDocument = (await getUserFromCache(userId)) as IUserDocument;
+    return response;
+  } catch (error) {
+    console.log('[user.cache-updatePropertyInUserCache] : Server error');
+    return ServerError('[user.cache-updatePropertyInUserCache] : Server error');
   }
 };

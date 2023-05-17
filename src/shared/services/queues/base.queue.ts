@@ -9,6 +9,7 @@ import { IReactionJob } from 'features/reaction/interfaces/reaction.interface';
 import { ICommentJob } from 'features/comment/interfaces/comment.interface';
 import { IBlockedUserJobData, IFollowerJobData } from 'features/follower/interface/follower.interface';
 import { INotificationJobData } from 'features/notification/interfaces/notification.interface';
+import { IFileImageJobData } from 'features/image/interfaces/image.interface';
 
 type IBaseJobData =
   | IAuthJob
@@ -19,7 +20,8 @@ type IBaseJobData =
   | ICommentJob
   | IFollowerJobData
   | IBlockedUserJobData
-  | INotificationJobData;
+  | INotificationJobData
+  | IFileImageJobData;
 /**
  * Function used for setting up a bull job queue
  * @param queueName
