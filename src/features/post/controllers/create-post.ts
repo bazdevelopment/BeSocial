@@ -8,6 +8,7 @@ import { PostQueue } from 'shared/services/queues/post.queue';
 import { uploadImageToCloudinary } from 'shared/globals/helpers/cloudinary-upload';
 import { UploadApiResponse } from 'cloudinary';
 import { BadRequestError } from 'middleware/error-middleware';
+import { imageQueue } from 'shared/services/queues/image.queue';
 
 /**
  * createPost controller used to create a basic post without an image
@@ -81,8 +82,12 @@ export const createPostWithImage = async (req: Request, res: Response): Promise<
   await savePostToCache(createdPost);
   /**Add new post into the job queue*/
   PostQueue().addPostJob('addPostToDB', { key: req.currentUser?.userId, value: createdPost });
-
-  //TODO : create a queue only for the images
+  /**Add new post image to mongoDB Image collection*/
+  imageQueue().addImageJob('addImageToDB', {
+    userId: req.currentUser?.userId,
+    imgId: uploadImageResult.public_id,
+    imgVersion: uploadImageResult.version.toString()
+  });
 
   res.status(HTTP_STATUS.CREATED).json({ message: 'Post created successfully! ✅' });
 };

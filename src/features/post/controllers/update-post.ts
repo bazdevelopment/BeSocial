@@ -7,6 +7,7 @@ import HTTP_STATUS from 'http-status-codes';
 import { UploadApiResponse } from 'cloudinary';
 import { uploadImageToCloudinary, uploadVideoToCloudinary } from 'shared/globals/helpers/cloudinary-upload';
 import { BadRequestError } from 'middleware/error-middleware';
+import { imageQueue } from 'shared/services/queues/image.queue';
 
 /* Helper for uploading an image to cloudinary */
 const uploadImage = async (image: string) => (await uploadImageToCloudinary(image)) as UploadApiResponse;
@@ -127,10 +128,11 @@ async function addImageToExistingPost(req: Request): Promise<UploadApiResponse> 
   socketIo.emit('update post', postUpdated, 'posts');
   PostQueue().addPostJob('updatePostInDB', { postId, updatedPost: postUpdated });
 
-  /**Todo */
-  // if(image){
-  //   ImageQueue.addImageJob
-  // }
+  imageQueue().addImageJob('addImageToDB', {
+    userId: req.currentUser?.userId,
+    imgId: result.public_id,
+    imgVersion: result.version.toString()
+  });
 
   return result;
 }
