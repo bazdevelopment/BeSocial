@@ -33,6 +33,11 @@ export const addChatMessage = async (req: Request, res: Response): Promise<void>
   const { conversationId, receiverId, receiverUsername, receiverAvatarColor, receiverProfilePicture, body, gifUrl, isRead, selectedImage } =
     req.body;
 
+  if (!req.currentUser) {
+    res.status(HTTP_STATUS.BAD_REQUEST).json({ message: 'Logged in user is not existing' });
+    return;
+  }
+
   let fileUrl = '';
   const messageObjectId: ObjectId = new ObjectId();
   /* if the conversation exist cast the conversation id, is not generate a new object id */
@@ -62,9 +67,9 @@ export const addChatMessage = async (req: Request, res: Response): Promise<void>
     receiverUsername,
     receiverAvatarColor,
     receiverProfilePicture,
-    senderUsername: req.currentUser?.username!,
-    senderId: req.currentUser?.userId!,
-    senderAvatarColor: req.currentUser?.avatarColor!,
+    senderUsername: req.currentUser.username,
+    senderId: req.currentUser.userId,
+    senderAvatarColor: req.currentUser?.avatarColor,
     senderProfilePicture: sender.profilePicture,
     body,
     isRead,
@@ -79,12 +84,12 @@ export const addChatMessage = async (req: Request, res: Response): Promise<void>
   emitSocketIoEventChat(messageData);
   /* if the message is not read yet send the email notification */
   if (!isRead) {
-    sendEmailNotification({ currentUser: req.currentUser!, message: body, receiverName: receiverUsername, receiverId, messageData });
+    await sendEmailNotification({ currentUser: req.currentUser, message: body, receiverName: receiverUsername, receiverId, messageData });
   }
   /* 1-add sender to chat list in cache */
-  await addChatListToCache(req.currentUser?.userId!, receiverId, `${conversationObjectId}`);
+  await addChatListToCache(req.currentUser?.userId, receiverId, `${conversationObjectId}`);
   /* 2-add receiver to chat list in cache */
-  await addChatListToCache(receiverId, req.currentUser?.userId!, `${conversationObjectId}`);
+  await addChatListToCache(receiverId, req.currentUser?.userId, `${conversationObjectId}`);
   /* 3-add message data to cache */
   await addChatMessageToCache(`${conversationObjectId}`, messageData);
   /* 4-add message to chat queue */

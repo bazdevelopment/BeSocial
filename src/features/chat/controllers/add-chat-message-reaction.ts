@@ -26,7 +26,7 @@ export const addChatMessageReaction = async (req: Request, res: Response): Promi
 
   const { conversationId, messageId, reaction, type } = req.body;
 
-  if (!conversationId || !messageId || !reaction || !type) {
+  if (!conversationId || !messageId || !reaction || !type || !req.currentUser?.username) {
     res.status(HTTP_STATUS.BAD_REQUEST).json({ message: 'Invalid request parameters.' });
     return;
   }
@@ -35,7 +35,7 @@ export const addChatMessageReaction = async (req: Request, res: Response): Promi
     conversationId,
     messageId,
     reaction,
-    senderName: req.currentUser?.username!,
+    senderName: req.currentUser?.username,
     type
   });
   /* emit the message reaction event */
