@@ -21,12 +21,14 @@ import userFollowRoutes from './features/follower/routes/follower.routes';
 import userBlockRoutes from './features/block/routes/block.routes';
 import notificationRoutes from './features/notification/routes/notification.routes';
 import imagesRoutes from './features/image/routes/image.routes';
+import chatRoutes from './features/chat/routes/chat.routes';
 
 import { connectRedisCache } from 'shared/services/redis/redis.connection';
 import { serverAdapter } from 'shared/services/queues/base.queue';
 import { listenToSocketIoPost } from 'shared/sockets/post';
 import { listenToSocketIoFollower } from 'shared/sockets/follower';
 import { listenToSocketIoUser } from 'shared/sockets/user';
+import { listenToSocketIoChat } from 'shared/sockets/chat';
 /* Enabling .env file */
 dotenv.config();
 const PORT = process.env.PORT;
@@ -89,6 +91,7 @@ createSocketIoServer().then((io: Server) => {
   listenToSocketIoPost(io);
   listenToSocketIoFollower(io);
   listenToSocketIoUser(io);
+  listenToSocketIoChat(io);
 });
 
 /* Test if server is running */
@@ -104,6 +107,7 @@ app.use('/api/v1/follow', userFollowRoutes);
 app.use('/api/v1/blocked', userBlockRoutes);
 app.use('/api/v1/notification', notificationRoutes);
 app.use('/api/v1/images', imagesRoutes);
+app.use('/api/v1/chat', chatRoutes);
 
 /* use Middleware for edge cases */
 app.use(notFound);
