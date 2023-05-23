@@ -1,0 +1,64 @@
+@baseURL=http://localhost:8000
+
+@urlPath=api/v1/chat
+
+### Send message endpoint
+POST {{baseURL}}/{{urlPath}}/send-message
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "conversationId":"",
+  "receiverId":"64588902a8d043efedff0ee2",
+  "receiverUsername":"Mirce",
+  "receiverAvatarColor":"red",
+  "receiverProfilePicture":"https://w7.pngwing.com/pngs/120/102/png-transparent-padlock-logo-computer-icons-padlock-technic-logo-password-lock.png",
+  "body":"how are you?",
+  "gifUrl":"",
+  "isRead":false,
+  "selectedImage":""
+}
+
+### GET chat conversations endpoint
+GET {{baseURL}}/{{urlPath}}/get-conversation-list
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+
+### GET chat messages endpoint
+GET {{baseURL}}/{{urlPath}}/get-messages/64588902a8d043efedff0ee2
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+### DELETE mark message as deleted endpoint
+DELETE {{baseURL}}/{{urlPath}}/mark-as-deleted/6464660b1a3a5bb308daf347/64588902a8d043efedff0ee2/6469bb39d7305d56de50e30a/deleteForEveryone
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+### PUT mark messages as read endpoint
+PUT {{baseURL}}/{{urlPath}}/read-messages
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "senderId":"6464660b1a3a5bb308daf347",
+  "receiverId":"64588902a8d043efedff0ee2"
+}
+
+### PUT add message reactino endpoint
+PUT {{baseURL}}/{{urlPath}}/reaction
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "conversationId":"6469bb39d7305d56de50e30b",
+  "messageId":"6469bb39d7305d56de50e30a",
+  "reaction":"sad",
+  "type":"add"
+}

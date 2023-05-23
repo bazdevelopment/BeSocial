@@ -10,6 +10,7 @@ import { ICommentJob } from 'features/comment/interfaces/comment.interface';
 import { IBlockedUserJobData, IFollowerJobData } from 'features/follower/interface/follower.interface';
 import { INotificationJobData } from 'features/notification/interfaces/notification.interface';
 import { IFileImageJobData } from 'features/image/interfaces/image.interface';
+import { IChatJobData, IMessageData } from 'features/chat/interfaces/chat.interface';
 
 type IBaseJobData =
   | IAuthJob
@@ -21,7 +22,9 @@ type IBaseJobData =
   | IFollowerJobData
   | IBlockedUserJobData
   | INotificationJobData
-  | IFileImageJobData;
+  | IFileImageJobData
+  | IChatJobData
+  | IMessageData;
 /**
  * Function used for setting up a bull job queue
  * @param queueName
