@@ -11,10 +11,15 @@ import mongoose from 'mongoose';
  * get the last message between 2 users
  */
 export const getChatConversationMessage = async (req: Request, res: Response): Promise<void> => {
-  const cachedList: IMessageData[] = await getUserConversationListFromCache(req.currentUser?.userId!);
+  if (!req.currentUser) {
+    // Return an error response or throw an error
+    res.status(HTTP_STATUS.BAD_REQUEST).json({ message: 'There is no logged in user.' });
+    return;
+  }
+  const cachedList: IMessageData[] = await getUserConversationListFromCache(req.currentUser.userId);
   const list: IMessageData[] = cachedList.length
     ? cachedList
-    : await ChatService.getUserConversationList(new mongoose.Types.ObjectId(req.currentUser?.userId));
+    : await ChatService.getUserConversationList(new mongoose.Types.ObjectId(req.currentUser.userId));
 
   res.status(HTTP_STATUS.OK).json({ message: 'User conversationList', list });
 };
