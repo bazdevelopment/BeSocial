@@ -75,8 +75,8 @@ export interface ILogin {
 }
 
 export interface IUserJobInfo {
-  key?: string;
-  value?: string | ISocialLinks;
+  userId?: string;
+  fields?: string | ISocialLinks;
 }
 
 export interface IUserJob {

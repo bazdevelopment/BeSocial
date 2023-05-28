@@ -3,7 +3,7 @@ import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { ExpressAdapter } from '@bull-board/express';
 import { createBullBoard } from '@bull-board/api';
 import { IAuthJob } from 'features/auth/interfaces/auth.interface';
-import { IEmailJob, IUserJob } from 'features/user/interfaces/user.interface';
+import { IEmailJob, IUserJob, IUserJobInfo } from 'features/user/interfaces/user.interface';
 import { IPostJobData } from 'features/post/interfaces/post.interface';
 import { IReactionJob } from 'features/reaction/interfaces/reaction.interface';
 import { ICommentJob } from 'features/comment/interfaces/comment.interface';
@@ -24,7 +24,8 @@ type IBaseJobData =
   | INotificationJobData
   | IFileImageJobData
   | IChatJobData
-  | IMessageData;
+  | IMessageData
+  | IUserJobInfo;
 /**
  * Function used for setting up a bull job queue
  * @param queueName

@@ -1,0 +1,86 @@
+@baseURL=http://localhost:8000
+
+@urlPath=api/v1/user
+
+### Get all users endpoint
+GET {{baseURL}}/{{urlPath}}/all/1
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+### Get logged in user profle endpoint
+GET {{baseURL}}/{{urlPath}}/current-user
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+
+### Get a specific user profle endpoint
+GET {{baseURL}}/{{urlPath}}/user/6464658f1a3a5bb308daf33a
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+### Get user and post endpoint
+GET {{baseURL}}/{{urlPath}}/user/profile/posts/6464658f1a3a5bb308daf33a/Carol
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+
+### Get users suggestions
+GET {{baseURL}}/{{urlPath}}/suggestions
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+### GET search users endpoint
+GET {{baseURL}}/{{urlPath}}/search/M
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+
+
+### PUT update basic user info
+PUT {{baseURL}}/{{urlPath}}/basic-info
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+   "quote": "Lorem ipsum",
+   "work": "Developer",
+   "school": "Informatics",
+   "location": "Iasi"
+}
+
+### PUT update user social links
+PUT {{baseURL}}/{{urlPath}}/social-links
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+   "facebook": "fb.com",
+  "instagram": "insta.com",
+  "twitter": "twitter.com",
+  "youtube": "yt.com"
+}
+### PUT update notification settings
+PUT {{baseURL}}/{{urlPath}}/notification-settings
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "messages": false,
+  "reactions": false,
+  "comments": false,
+  "follows": false
+}
+
+
+
+
+
