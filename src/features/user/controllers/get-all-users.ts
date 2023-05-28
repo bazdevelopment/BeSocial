@@ -9,12 +9,11 @@ import { FollowService } from 'shared/services/db/follower.service';
 import mongoose from 'mongoose';
 import { BadRequestError } from 'middleware/error-middleware';
 
+const PAGE_SIZE = 10;
 /**
  * Get all users
  * controller used to fetch all the users using pagination without including logged in user
  */
-const PAGE_SIZE = 10;
-
 export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
   if (!req.currentUser?.userId) {
     return BadRequestError('Invalid request parameters.');

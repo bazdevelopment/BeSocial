@@ -29,7 +29,6 @@ export const UserService = {
     const totalCount = await UserModel.find({}).countDocuments();
     return totalCount;
   },
-  getUserById: () => {},
   /* get random users that a specific user doesn't follow */
   getRandomUsers: async (userId: string): Promise<IUserDocument[]> => {
     const randomUsers: IUserDocument[] = [];

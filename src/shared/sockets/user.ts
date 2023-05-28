@@ -30,7 +30,7 @@ export const listenToSocketIoUser = (io: Server) => {
   });
 };
 
-export let connectedUsersMap: Map<string, string> = new Map();
+export const connectedUsersMap: Map<string, string> = new Map();
 let users: string[] = [];
 /* helper function used to push into the map the new online user */
 const addClientToMap = (userId: string, socketId: string): void => {
@@ -50,13 +50,14 @@ const removeClientFromMap = (socketId: string, socketIoInstance: Server): void =
     socketIoInstance.emit('user online', users);
   }
 };
-
+/* helper used to add specific user in the users list */
 const addUsers = (username: string): void => {
   if (!users.includes(username)) {
     users.push(username);
   }
 };
 
+/* helper used to remove a specific user from the users list */
 const removeUser = (username: string) => {
   users = users.filter((name) => name !== username);
 };
