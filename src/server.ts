@@ -22,6 +22,7 @@ import userBlockRoutes from './features/block/routes/block.routes';
 import notificationRoutes from './features/notification/routes/notification.routes';
 import imagesRoutes from './features/image/routes/image.routes';
 import chatRoutes from './features/chat/routes/chat.routes';
+import userRoutes from './features/user/routes/user.routes';
 
 import { connectRedisCache } from 'shared/services/redis/redis.connection';
 import { serverAdapter } from 'shared/services/queues/base.queue';
@@ -108,6 +109,7 @@ app.use('/api/v1/blocked', userBlockRoutes);
 app.use('/api/v1/notification', notificationRoutes);
 app.use('/api/v1/images', imagesRoutes);
 app.use('/api/v1/chat', chatRoutes);
+app.use('/api/v1/user', userRoutes);
 
 /* use Middleware for edge cases */
 app.use(notFound);
