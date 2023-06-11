@@ -1,6 +1,6 @@
-import { IReactionDocument, IReactions } from 'features/reaction/interfaces/reaction.interface';
+import { IReactionDocument, IReactions } from '@src/features/reaction/interfaces/reaction.interface';
 import { getRedisClient } from './redis.connection';
-import { ServerError } from 'middleware/error-middleware';
+import { ServerError } from '@src/middleware/error-middleware';
 
 /**
  * Method used to save post reaction to redis cache

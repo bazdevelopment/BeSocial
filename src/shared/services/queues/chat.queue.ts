@@ -1,6 +1,6 @@
-import { IChatJobData, IMessageData } from 'features/chat/interfaces/chat.interface';
+import { IChatJobData, IMessageData } from '@src/features/chat/interfaces/chat.interface';
 import { createBaseQueue } from './base.queue';
-import { ChatWorker } from 'shared/workers/chat.worker';
+import { ChatWorker } from '@src/shared/workers/chat.worker';
 
 /**
  * Chat queue

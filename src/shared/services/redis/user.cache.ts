@@ -1,9 +1,9 @@
-import { IUserDocument } from 'features/user/interfaces/user.interface';
-import { generateUniqueId } from 'shared/globals/helpers/generate-unique-id';
-import { parseJson } from 'shared/globals/helpers/parse-json';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { generateUniqueId } from '@src/shared/globals/helpers/generate-unique-id';
+import { parseJson } from '@src/shared/globals/helpers/parse-json';
 import { getRedisClient } from './redis.connection';
-import { ServerError } from 'middleware/error-middleware';
-import { shuffle } from 'shared/globals/helpers/shuffle';
+import { ServerError } from '@src/middleware/error-middleware';
+import { shuffle } from '@src/shared/globals/helpers/shuffle';
 
 /**
  * Function that saves the registered user in the redis caches using hashes

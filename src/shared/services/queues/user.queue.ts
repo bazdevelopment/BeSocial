@@ -1,5 +1,5 @@
-import { IUserJob, IUserJobInfo } from 'features/user/interfaces/user.interface';
-import { UserWorker } from 'shared/workers/user.worker';
+import { IUserJob, IUserJobInfo } from '@src/features/user/interfaces/user.interface';
+import { UserWorker } from '@src/shared/workers/user.worker';
 import { createBaseQueue } from './base.queue';
 
 /**

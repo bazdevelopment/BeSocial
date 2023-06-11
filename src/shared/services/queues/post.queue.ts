@@ -1,6 +1,6 @@
 import { createBaseQueue } from './base.queue';
-import { IPostJobData } from 'features/post/interfaces/post.interface';
-import { PostWorker } from 'shared/workers/post.worker';
+import { IPostJobData } from '@src/features/post/interfaces/post.interface';
+import { PostWorker } from '@src/shared/workers/post.worker';
 
 type AddPostJobFn = (jobName: string, data: IPostJobData) => void;
 

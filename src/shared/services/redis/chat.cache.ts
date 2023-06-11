@@ -1,7 +1,7 @@
-import { ServerError } from 'middleware/error-middleware';
+import { ServerError } from '@src/middleware/error-middleware';
 import { getRedisClient } from './redis.connection';
-import { IChatList, IGetMessageFromCache, IMessageData } from 'features/chat/interfaces/chat.interface';
-import { IReaction } from 'features/reaction/interfaces/reaction.interface';
+import { IChatList, IGetMessageFromCache, IMessageData } from '@src/features/chat/interfaces/chat.interface';
+import { IReaction } from '@src/features/reaction/interfaces/reaction.interface';
 /**
  * addChatListToCache
  * !scenario : when a used send a message to another user the "chatList" section is being populated with the sender id and receiverId

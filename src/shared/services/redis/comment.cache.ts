@@ -1,6 +1,6 @@
-import { ServerError } from 'middleware/error-middleware';
+import { ServerError } from '@src/middleware/error-middleware';
 import { getRedisClient } from './redis.connection';
-import { ICommentDocument, ICommentNameList } from 'features/comment/interfaces/comment.interface';
+import { ICommentDocument, ICommentNameList } from '@src/features/comment/interfaces/comment.interface';
 /**
  * savePostCommentToCache
  * Function used to save a comment for a post in redis cache

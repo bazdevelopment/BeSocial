@@ -1,6 +1,6 @@
-import { IFileImageDocument } from 'features/image/interfaces/image.interface';
-import { ImageModel } from 'features/image/models/image.model';
-import { UserModel } from 'features/user/models/user.model';
+import { IFileImageDocument } from '@src/features/image/interfaces/image.interface';
+import { ImageModel } from '@src/features/image/models/image.model';
+import { UserModel } from '@src/features/user/models/user.model';
 import mongoose from 'mongoose';
 
 interface IProfilePicure {

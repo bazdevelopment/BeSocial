@@ -1,6 +1,6 @@
 import { createBaseQueue } from './base.queue';
-import { IFileImageJobData } from 'features/image/interfaces/image.interface';
-import { ImageWorker } from 'shared/workers/image.worker';
+import { IFileImageJobData } from '@src/features/image/interfaces/image.interface';
+import { ImageWorker } from '@src/shared/workers/image.worker';
 
 /**
  * Image queue

@@ -1,10 +1,10 @@
-import { IFollowerData } from 'features/follower/interface/follower.interface';
+import { IFollowerData } from '@src/features/follower/interface/follower.interface';
 import { getRedisClient } from './redis.connection';
-import { ServerError } from 'middleware/error-middleware';
+import { ServerError } from '@src/middleware/error-middleware';
 import { getUserFromCache } from './user.cache';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
 import mongoose, { ObjectId } from 'mongoose';
-import { BLOCK_UNBLOCK_ACTION, BlockUnblockActionType } from 'constants/block-unblock';
+import { BLOCK_UNBLOCK_ACTION, BlockUnblockActionType } from '@src/constants/block-unblock';
 
 /**
  * saveFollowerToCache

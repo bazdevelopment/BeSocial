@@ -1,4 +1,4 @@
-import { ILogin, ISocketData } from 'features/user/interfaces/user.interface';
+import { ILogin, ISocketData } from '@src/features/user/interfaces/user.interface';
 import { Server, Socket } from 'socket.io';
 
 /**

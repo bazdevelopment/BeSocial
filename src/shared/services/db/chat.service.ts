@@ -1,7 +1,7 @@
-import { IMessageData } from 'features/chat/interfaces/chat.interface';
-import { IConversationDocument } from 'features/chat/interfaces/conversation.interface';
-import { MessageModel } from 'features/chat/models/chat.model';
-import { ConversationModel } from 'features/chat/models/conversation.model';
+import { IMessageData } from '@src/features/chat/interfaces/chat.interface';
+import { IConversationDocument } from '@src/features/chat/interfaces/conversation.interface';
+import { MessageModel } from '@src/features/chat/models/chat.model';
+import { ConversationModel } from '@src/features/chat/models/conversation.model';
 import { ObjectId } from 'mongodb';
 
 export const ChatService = {

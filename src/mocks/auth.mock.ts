@@ -1,4 +1,4 @@
-import { IAuthPayload } from 'features/auth/interfaces/auth.interface';
+import { IAuthPayload } from '@src/features/auth/interfaces/auth.interface';
 import { Response } from 'express';
 
 /**

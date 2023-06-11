@@ -1,5 +1,5 @@
-import { IEmailJob } from 'features/user/interfaces/user.interface';
-import { EmailWorker } from 'shared/workers/email.worker';
+import { IEmailJob } from '@src/features/user/interfaces/user.interface';
+import { EmailWorker } from '@src/shared/workers/email.worker';
 import { createBaseQueue } from './base.queue';
 
 /**

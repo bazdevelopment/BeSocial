@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { IAuthPayload } from 'features/auth/interfaces/auth.interface';
+import { IAuthPayload } from '@src/features/auth/interfaces/auth.interface';
 
 /* Helper for mocking the post request */
 export const postMockRequest = (body: IBody, currentUser?: IAuthPayload | null, params?: IParams) => ({

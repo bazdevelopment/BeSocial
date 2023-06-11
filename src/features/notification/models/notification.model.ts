@@ -1,6 +1,6 @@
 import mongoose, { Model, Schema, model } from 'mongoose';
 import { INotification, INotificationDocument } from '../interfaces/notification.interface';
-import { NotificationService } from 'shared/services/db/notification.service';
+import { NotificationService } from '@src/shared/services/db/notification.service';
 
 export const notificationSchema: Schema = new Schema(
   {

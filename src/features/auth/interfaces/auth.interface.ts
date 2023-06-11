@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 import { ObjectId } from 'mongodb';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
 
 /* req.currentUser will be visible in the req object */
 declare global {

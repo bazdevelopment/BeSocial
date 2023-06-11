@@ -1,5 +1,5 @@
 import express from 'express';
-import { verifyUser } from 'middleware/auth-middleware';
+import { verifyUser } from '@src/middleware/auth-middleware';
 import { getAllUsers } from '../controllers/get-all-users';
 import { getLoggedInUser } from '../controllers/get-logged-in-user';
 import { getUser } from '../controllers/get-user';
@@ -7,7 +7,7 @@ import { getUserAndPosts } from '../controllers/get-user-and-posts';
 import { getRandomUsersSuggestions } from '../controllers/get-random-users';
 import { searchUsers } from '../controllers/search-users';
 import { updateBasicUserInfo } from '../controllers/update-user-basic-info';
-import { joiValidation } from 'middleware/joi-validation';
+import { joiValidation } from '@src/middleware/joi-validation';
 import { basicInfoSchema, notificationSettingsSchema, socialLinksSchema } from '../schemes/user.schemes';
 import { updateUserInfoSocialLinks } from '../controllers/update-user-social-links';
 import { updateUserNotificationSettings } from '../controllers/update-user-notification-settings';

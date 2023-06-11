@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import { IAllUsers, IUserDocument } from 'features/user/interfaces/user.interface';
-import { UserService } from 'shared/services/db/user.service';
-import { geAllUsersFromCache, getTotalUsersCountFromCache } from 'shared/services/redis/user.cache';
+import { IAllUsers, IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { UserService } from '@src/shared/services/db/user.service';
+import { geAllUsersFromCache, getTotalUsersCountFromCache } from '@src/shared/services/redis/user.cache';
 import HTTP_STATUS from 'http-status-codes';
-import { IFollowerData } from 'features/follower/interface/follower.interface';
-import { getFollowersOrFollowingFromCache } from 'shared/services/redis/follower.cache';
-import { FollowService } from 'shared/services/db/follower.service';
+import { IFollowerData } from '@src/features/follower/interface/follower.interface';
+import { getFollowersOrFollowingFromCache } from '@src/shared/services/redis/follower.cache';
+import { FollowService } from '@src/shared/services/db/follower.service';
 import mongoose from 'mongoose';
-import { BadRequestError } from 'middleware/error-middleware';
+import { BadRequestError } from '@src/middleware/error-middleware';
 
 const PAGE_SIZE = 10;
 /**

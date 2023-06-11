@@ -1,16 +1,16 @@
 import Queue, { Job } from 'bull';
-import { BullAdapter } from '@bull-board/api/bullAdapter';
+import { BullAdapter } from '@bull-board/api/bullAdapter.js';
 import { ExpressAdapter } from '@bull-board/express';
 import { createBullBoard } from '@bull-board/api';
-import { IAuthJob } from 'features/auth/interfaces/auth.interface';
-import { IEmailJob, IUserJob, IUserJobInfo } from 'features/user/interfaces/user.interface';
-import { IPostJobData } from 'features/post/interfaces/post.interface';
-import { IReactionJob } from 'features/reaction/interfaces/reaction.interface';
-import { ICommentJob } from 'features/comment/interfaces/comment.interface';
-import { IBlockedUserJobData, IFollowerJobData } from 'features/follower/interface/follower.interface';
-import { INotificationJobData } from 'features/notification/interfaces/notification.interface';
-import { IFileImageJobData } from 'features/image/interfaces/image.interface';
-import { IChatJobData, IMessageData } from 'features/chat/interfaces/chat.interface';
+import { IAuthJob } from '@src/features/auth/interfaces/auth.interface';
+import { IEmailJob, IUserJob, IUserJobInfo } from '@src/features/user/interfaces/user.interface';
+import { IPostJobData } from '@src/features/post/interfaces/post.interface';
+import { IReactionJob } from '@src/features/reaction/interfaces/reaction.interface';
+import { ICommentJob } from '@src/features/comment/interfaces/comment.interface';
+import { IBlockedUserJobData, IFollowerJobData } from '@src/features/follower/interface/follower.interface';
+import { INotificationJobData } from '@src/features/notification/interfaces/notification.interface';
+import { IFileImageJobData } from '@src/features/image/interfaces/image.interface';
+import { IChatJobData, IMessageData } from '@src/features/chat/interfaces/chat.interface';
 
 type IBaseJobData =
   | IAuthJob

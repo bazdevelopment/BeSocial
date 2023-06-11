@@ -1,16 +1,14 @@
 import { Server } from 'socket.io';
 import { createClient } from 'redis';
+import http from 'http';
 import { createAdapter } from '@socket.io/redis-adapter';
-import { createServer } from 'http';
-import { HTTP_METHODS } from 'constants/httpMethods';
+import { HTTP_METHODS } from '@src/constants/httpMethods';
 
 // Define a global variable for the socket.io server instance
 export let io: Server;
 
 /**Function used to make to connection between Redis and SocketIO */
-export const createSocketIoServer = async (): Promise<Server> => {
-  const httpServer = createServer();
-
+export const createSocketIoServer = async (httpServer: http.Server): Promise<Server> => {
   io = new Server(httpServer, {
     cors: {
       origin: process.env.CLIENT_URL,

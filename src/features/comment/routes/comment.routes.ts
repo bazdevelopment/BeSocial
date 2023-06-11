@@ -1,7 +1,7 @@
 import express from 'express';
-import { joiValidation } from 'middleware/joi-validation';
+import { joiValidation } from '@src/middleware/joi-validation';
 
-import { verifyUser } from 'middleware/auth-middleware';
+import { verifyUser } from '@src/middleware/auth-middleware';
 import { getCommentsForPost, getCommentsPostUserNames, getSingleComment } from '../controllers/get-comments';
 import { addCommentSchema } from '../schemes/comment.scheme';
 import { addComment } from '../controllers/add-comment';

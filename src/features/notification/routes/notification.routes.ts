@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { verifyUser } from 'middleware/auth-middleware';
+import { verifyUser } from '@src/middleware/auth-middleware';
 import { deleteNotification } from '../controllers/delete-notification';
 import { readNotification } from '../controllers/read-notification';
 import { getNotifications } from '../controllers/get-notifications';

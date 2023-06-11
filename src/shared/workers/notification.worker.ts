@@ -1,5 +1,5 @@
 import { DoneCallback, Job } from 'bull';
-import { NotificationService } from 'shared/services/db/notification.service';
+import { NotificationService } from '@src/shared/services/db/notification.service';
 
 /**
  * Notification worker

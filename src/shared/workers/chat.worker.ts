@@ -1,5 +1,5 @@
 import { DoneCallback, Job } from 'bull';
-import { ChatService } from 'shared/services/db/chat.service';
+import { ChatService } from '@src/shared/services/db/chat.service';
 
 export const ChatWorker = {
   addChatMessageToDB: async (job: Job, done: DoneCallback): Promise<void> => {

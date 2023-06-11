@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
-import { updatePropertyInUserCache } from 'shared/services/redis/user.cache';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { updatePropertyInUserCache } from '@src/shared/services/redis/user.cache';
 import HTTP_STATUS from 'http-status-codes';
-import { getIOInstance } from 'config/socketIO';
-import { imageQueue } from 'shared/services/queues/image.queue';
-import { ImageService } from 'shared/services/db/image.service';
-import { BadRequestError } from 'middleware/error-middleware';
+import { getIOInstance } from '@src/config/socketIO';
+import { imageQueue } from '@src/shared/services/queues/image.queue';
+import { ImageService } from '@src/shared/services/db/image.service';
+import { BadRequestError } from '@src/middleware/error-middleware';
 
 /**
  * deleteProfilePicture controller

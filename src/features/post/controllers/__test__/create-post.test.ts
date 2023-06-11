@@ -1,21 +1,21 @@
 import { Request, Response } from 'express';
-import { authUserPayload } from 'mocks/auth.mock';
-import { newPostMock, postMockRequest, postMockResponse } from 'mocks/post.mock';
-import * as postServer from 'config/socketIO';
+import { authUserPayload } from '@src/mocks/auth.mock';
+import { newPostMock, postMockRequest, postMockResponse } from '@src/mocks/post.mock';
+import * as postServer from '@src/config/socketIO';
 import { Server } from 'socket.io';
-// import * as PostQueue from 'shared/services/queues/post.queue';
+// import * as PostQueue from '@src/shared/services/queues/post.queue';
 import { createPost } from '../create-post';
-import * as postCache from 'shared/services/redis/post.cache';
-import { PostWorker } from 'shared/workers/post.worker';
-// import { createBaseQueue } from 'shared/services/queues/base.queue';
+import * as postCache from '@src/shared/services/redis/post.cache';
+import { PostWorker } from '@src/shared/workers/post.worker';
+// import { createBaseQueue } from '@src/shared/services/queues/base.queue';
 
 jest.useFakeTimers();
 
-jest.mock('shared/services/redis/post.cache');
+jest.mock('@src/shared/services/redis/post.cache');
 
 const mockAddJobToQueue = jest.fn();
 const mockProcessJobQueue = jest.fn();
-jest.mock('shared/services/queues/base.queue', () => {
+jest.mock('@src/shared/services/queues/base.queue', () => {
   return {
     createBaseQueue: () => ({
       addJobToQueue: mockAddJobToQueue,

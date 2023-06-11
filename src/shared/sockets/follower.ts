@@ -1,4 +1,4 @@
-import { IFollowers } from 'features/follower/interface/follower.interface';
+import { IFollowers } from '@src/features/follower/interface/follower.interface';
 import { Server, Socket } from 'socket.io';
 
 /**

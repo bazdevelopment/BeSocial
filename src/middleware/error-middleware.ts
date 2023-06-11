@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
-import { ENVIRONMENTS } from 'constants/environment';
-import { CustomError } from 'types/custom-error.interface';
+import { ENVIRONMENTS } from '@src/constants/environment';
+import { CustomError } from '@src/types/custom-error.interface';
 
 /** Middleware for handling edge cases. E.g. When the server is called with  the wrong route */
 const notFound = (req: Request, res: Response, next: NextFunction): void => {

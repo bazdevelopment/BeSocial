@@ -1,6 +1,6 @@
 import { createBaseQueue } from './base.queue';
-import { INotificationJobData } from 'features/notification/interfaces/notification.interface';
-import { NotificationWorker } from 'shared/workers/notification.worker';
+import { INotificationJobData } from '@src/features/notification/interfaces/notification.interface';
+import { NotificationWorker } from '@src/shared/workers/notification.worker';
 
 /**
  * Notification queue

@@ -1,8 +1,8 @@
-import { getIOInstance } from 'config/socketIO';
+import { getIOInstance } from '@src/config/socketIO';
 import HTTP_STATUS from 'http-status-codes';
 import { Request, Response } from 'express';
-import { PostQueue } from 'shared/services/queues/post.queue';
-import { deletePostFromCache } from 'shared/services/redis/post.cache';
+import { PostQueue } from '@src/shared/services/queues/post.queue';
+import { deletePostFromCache } from '@src/shared/services/redis/post.cache';
 
 /**
  * This function is designed to fetch a list of posts with images from a cache or a database, based on the requested page number and a query

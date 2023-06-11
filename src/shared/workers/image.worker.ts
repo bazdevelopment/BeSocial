@@ -1,5 +1,5 @@
 import { DoneCallback, Job } from 'bull';
-import { ImageService } from 'shared/services/db/image.service';
+import { ImageService } from '@src/shared/services/db/image.service';
 
 /**
  * ImageWorker

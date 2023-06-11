@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { NotAuthorizedError } from './error-middleware';
 import JWT from 'jsonwebtoken';
-import { IAuthPayload } from 'features/auth/interfaces/auth.interface';
+import { IAuthPayload } from '@src/features/auth/interfaces/auth.interface';
 
 /**
  * Function that checks if the user has a token assigned to his login session

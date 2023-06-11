@@ -1,5 +1,5 @@
 import { DoneCallback, Job } from 'bull';
-import { CommentService } from 'shared/services/db/comment.service';
+import { CommentService } from '@src/shared/services/db/comment.service';
 
 export const CommentWorker = {
   addCommentToDB: async (job: Job, done: DoneCallback): Promise<void> => {

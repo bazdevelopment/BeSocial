@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-import { INotificationDocument } from 'features/notification/interfaces/notification.interface';
-import { NotificationModel } from 'features/notification/models/notification.model';
+import { INotificationDocument } from '@src/features/notification/interfaces/notification.interface';
+import { NotificationModel } from '@src/features/notification/models/notification.model';
 
 export const NotificationService = {
   /* get all the notifications for a specific user */

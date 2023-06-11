@@ -1,4 +1,4 @@
-import { INotificationTemplate } from 'features/notification/interfaces/notification.interface';
+import { INotificationTemplate } from '@src/features/notification/interfaces/notification.interface';
 
 /**
  * HTML templated received by the used via email when  password reset is requested

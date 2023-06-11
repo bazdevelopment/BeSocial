@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
-import { BadRequestError } from 'middleware/error-middleware';
-import { AuthService } from 'shared/services/db/auth.service';
-import { UserService } from 'shared/services/db/user.service';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { BadRequestError } from '@src/middleware/error-middleware';
+import { AuthService } from '@src/shared/services/db/auth.service';
+import { UserService } from '@src/shared/services/db/user.service';
 import { IAuthDocument } from '../interfaces/auth.interface';
 import JWT from 'jsonwebtoken';
 import HTTP_STATUS from 'http-status-codes';

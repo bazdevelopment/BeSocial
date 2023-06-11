@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 
-import { updatePropertyInUserCache } from 'shared/services/redis/user.cache';
-import { userQueue } from 'shared/services/queues/user.queue';
-import { BadRequestError } from 'middleware/error-middleware';
+import { updatePropertyInUserCache } from '@src/shared/services/redis/user.cache';
+import { userQueue } from '@src/shared/services/queues/user.queue';
+import { BadRequestError } from '@src/middleware/error-middleware';
 
 /**
  * updateBasicUserInfo

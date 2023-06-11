@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import { IPostDocument } from '../interfaces/post.interface';
-import { getPostsFromCache, getPostsWithImagesFromCache, getTotalPostsInCache } from 'shared/services/redis/post.cache';
-import { PostService } from 'shared/services/db/post.service';
+import { getPostsFromCache, getPostsWithImagesFromCache, getTotalPostsInCache } from '@src/shared/services/redis/post.cache';
+import { PostService } from '@src/shared/services/db/post.service';
 
 const PAGE_SIZE = 10;
 

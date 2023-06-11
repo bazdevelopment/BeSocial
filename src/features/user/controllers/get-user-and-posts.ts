@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import { IUserDocument } from '../interfaces/user.interface';
-import { getUserFromCache } from 'shared/services/redis/user.cache';
-import { UserService } from 'shared/services/db/user.service';
-import { IPostDocument } from 'features/post/interfaces/post.interface';
-import { getUserPostsFromCache } from 'shared/services/redis/post.cache';
-import { PostService } from 'shared/services/db/post.service';
+import { getUserFromCache } from '@src/shared/services/redis/user.cache';
+import { UserService } from '@src/shared/services/db/user.service';
+import { IPostDocument } from '@src/features/post/interfaces/post.interface';
+import { getUserPostsFromCache } from '@src/shared/services/redis/post.cache';
+import { PostService } from '@src/shared/services/db/post.service';
 /**
  * getUserAndPosts
  * controller used for fetching user profile and posts that he has created

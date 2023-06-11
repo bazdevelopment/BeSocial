@@ -1,6 +1,6 @@
 import { createBaseQueue } from './base.queue';
-import { ICommentJob } from 'features/comment/interfaces/comment.interface';
-import { CommentWorker } from 'shared/workers/comment.worker';
+import { ICommentJob } from '@src/features/comment/interfaces/comment.interface';
+import { CommentWorker } from '@src/shared/workers/comment.worker';
 
 /**
  * Comment queue

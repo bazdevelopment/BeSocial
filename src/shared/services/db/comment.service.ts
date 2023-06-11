@@ -1,13 +1,13 @@
 import { getUserFromCache } from '../redis/user.cache';
-import { PostModel } from 'features/post/models/Post.model';
+import { PostModel } from '@src/features/post/models/Post.model';
 import mongoose, { Query } from 'mongoose';
-import { ICommentDocument, ICommentJob, ICommentNameList, IQueryComment } from 'features/comment/interfaces/comment.interface';
-import { CommentsModel } from 'features/comment/models/comment.model';
-import { IPostDocument } from 'features/post/interfaces/post.interface';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
-import { INotificationDocument } from 'features/notification/interfaces/notification.interface';
-import { NotificationModel } from 'features/notification/models/notification.model';
-import { getIOInstance } from 'config/socketIO';
+import { ICommentDocument, ICommentJob, ICommentNameList, IQueryComment } from '@src/features/comment/interfaces/comment.interface';
+import { CommentsModel } from '@src/features/comment/models/comment.model';
+import { IPostDocument } from '@src/features/post/interfaces/post.interface';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { INotificationDocument } from '@src/features/notification/interfaces/notification.interface';
+import { NotificationModel } from '@src/features/notification/models/notification.model';
+import { getIOInstance } from '@src/config/socketIO';
 
 export const CommentService = {
   /**

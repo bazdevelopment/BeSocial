@@ -1,10 +1,10 @@
 import supertest from 'supertest';
 
-jest.mock('shared/services/queues/user.queue');
-jest.mock('shared/services/queues/user.queue');
-jest.mock('shared/services/queues/base.queue');
-jest.mock('shared/services/redis/user.cache');
-jest.mock('features/auth/models/auth.model');
+jest.mock('@src/shared/services/queues/user.queue');
+jest.mock('@src/shared/services/queues/user.queue');
+jest.mock('@src/shared/services/queues/base.queue');
+jest.mock('@src/shared/services/redis/user.cache');
+jest.mock('@src/features/auth/models/auth.model');
 
 jest.mock('cloudinary', () => ({
   v2: {

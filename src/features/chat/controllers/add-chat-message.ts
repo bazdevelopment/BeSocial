@@ -1,19 +1,19 @@
 import { UploadApiResponse } from 'cloudinary';
 import { Request, Response } from 'express';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
-import { BadRequestError } from 'middleware/error-middleware';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { BadRequestError } from '@src/middleware/error-middleware';
 import { ObjectId } from 'mongodb';
 import mongoose from 'mongoose';
-import { uploadImageToCloudinary } from 'shared/globals/helpers/cloudinary-upload';
-import { getUserFromCache } from 'shared/services/redis/user.cache';
+import { uploadImageToCloudinary } from '@src/shared/globals/helpers/cloudinary-upload';
+import { getUserFromCache } from '@src/shared/services/redis/user.cache';
 import { IMessageData, IMessageNotification } from '../interfaces/chat.interface';
-import { getIOInstance } from 'config/socketIO';
-import { INotificationTemplate } from 'features/notification/interfaces/notification.interface';
-import { notificationTemplate } from 'shared/services/emails/templates/notifications/notification-template';
-import { emailQueue } from 'shared/services/queues/email.queue';
+import { getIOInstance } from '@src/config/socketIO';
+import { INotificationTemplate } from '@src/features/notification/interfaces/notification.interface';
+import { notificationTemplate } from '@src/shared/services/emails/templates/notifications/notification-template';
+import { emailQueue } from '@src/shared/services/queues/email.queue';
 import HTTP_STATUS from 'http-status-codes';
-import { addChatListToCache, addChatMessageToCache } from 'shared/services/redis/chat.cache';
-import { ChatQueue } from 'shared/services/queues/chat.queue';
+import { addChatListToCache, addChatMessageToCache } from '@src/shared/services/redis/chat.cache';
+import { ChatQueue } from '@src/shared/services/queues/chat.queue';
 
 /**
  * addChatMessage

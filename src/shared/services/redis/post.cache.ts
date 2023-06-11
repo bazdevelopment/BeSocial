@@ -1,7 +1,7 @@
-import { IPostDocument } from 'features/post/interfaces/post.interface';
+import { IPostDocument } from '@src/features/post/interfaces/post.interface';
 import { getRedisClient } from './redis.connection';
-import { parseJson } from 'shared/globals/helpers/parse-json';
-import { ServerError } from 'middleware/error-middleware';
+import { parseJson } from '@src/shared/globals/helpers/parse-json';
+import { ServerError } from '@src/middleware/error-middleware';
 
 /**
  * Method used to save the created post in redis DB

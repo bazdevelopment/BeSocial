@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
-import { UserService } from 'shared/services/db/user.service';
-import { getUserFromCache } from 'shared/services/redis/user.cache';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { UserService } from '@src/shared/services/db/user.service';
+import { getUserFromCache } from '@src/shared/services/redis/user.cache';
 import HTTP_STATUS from 'http-status-codes';
 
 /**

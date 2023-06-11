@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { updateBlockedUserInCache } from 'shared/services/redis/follower.cache';
+import { updateBlockedUserInCache } from '@src/shared/services/redis/follower.cache';
 import HTTP_STATUS from 'http-status-codes';
 
-import { BlockedUserQueue } from 'shared/services/queues/blocked.queue';
-import { BLOCK_UNBLOCK_ACTION, BlockUnblockActionType } from 'constants/block-unblock';
+import { BlockedUserQueue } from '@src/shared/services/queues/blocked.queue';
+import { BLOCK_UNBLOCK_ACTION, BlockUnblockActionType } from '@src/constants/block-unblock';
 /**
  * blockUser
  * controller used for blocking a specific user

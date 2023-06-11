@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import ip from 'ip';
-import { BadRequestError } from 'middleware/error-middleware';
-import { AuthService } from 'shared/services/db/auth.service';
+import { BadRequestError } from '@src/middleware/error-middleware';
+import { AuthService } from '@src/shared/services/db/auth.service';
 import { IAuthDocument } from '../interfaces/auth.interface';
 import crypto from 'crypto';
-import { forgotPasswordTemplate } from 'shared/services/emails/templates/forgot-password/forgot-password-template';
-import { emailQueue } from 'shared/services/queues/email.queue';
+import { forgotPasswordTemplate } from '@src/shared/services/emails/templates/forgot-password/forgot-password-template';
+import { emailQueue } from '@src/shared/services/queues/email.queue';
 import HTTP_STATUS from 'http-status-codes';
-import { IResetPasswordTemplate } from 'shared/services/emails/templates/reset-password/reset-password-confirmation-template.interface';
+import { IResetPasswordTemplate } from '@src/shared/services/emails/templates/reset-password/reset-password-confirmation-template.interface';
 import moment from 'moment';
-import { resetPasswordTemplate } from 'shared/services/emails/templates/reset-password/reset-password-confirmation-template';
+import { resetPasswordTemplate } from '@src/shared/services/emails/templates/reset-password/reset-password-confirmation-template';
 
 /**
  * Method used to send an email template with a password reset link
