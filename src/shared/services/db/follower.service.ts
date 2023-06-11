@@ -1,13 +1,13 @@
-import { FollowerModel } from 'features/follower/models/follower.model';
-import { UserModel } from 'features/user/models/user.model';
+import { FollowerModel } from '@src/features/follower/models/follower.model';
+import { UserModel } from '@src/features/user/models/user.model';
 import mongoose from 'mongoose';
 import { ObjectId, BulkWriteResult } from 'mongodb';
-import { IFollowerData } from 'features/follower/interface/follower.interface';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
+import { IFollowerData } from '@src/features/follower/interface/follower.interface';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
 import { getUserFromCache } from '../redis/user.cache';
-import { INotificationDocument, INotificationTemplate } from 'features/notification/interfaces/notification.interface';
-import { NotificationModel } from 'features/notification/models/notification.model';
-import { getIOInstance } from 'config/socketIO';
+import { INotificationDocument, INotificationTemplate } from '@src/features/notification/interfaces/notification.interface';
+import { NotificationModel } from '@src/features/notification/models/notification.model';
+import { getIOInstance } from '@src/config/socketIO';
 import { notificationTemplate } from '../emails/templates/notifications/notification-template';
 import { emailQueue } from '../queues/email.queue';
 

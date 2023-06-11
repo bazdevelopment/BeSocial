@@ -1,5 +1,5 @@
-import { ICommentDocument } from 'features/comment/interfaces/comment.interface';
-import { IReactionDocument } from 'features/reaction/interfaces/reaction.interface';
+import { ICommentDocument } from '@src/features/comment/interfaces/comment.interface';
+import { IReactionDocument } from '@src/features/reaction/interfaces/reaction.interface';
 import { Server, Socket } from 'socket.io';
 
 /**

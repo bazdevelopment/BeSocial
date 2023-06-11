@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import { ICommentDocument, ICommentJob } from '../interfaces/comment.interface';
 import { ObjectId } from 'mongodb';
-import { savePostCommentToCache } from 'shared/services/redis/comment.cache';
-import { CommentQueue } from 'shared/services/queues/comment.queue';
+import { savePostCommentToCache } from '@src/shared/services/redis/comment.cache';
+import { CommentQueue } from '@src/shared/services/queues/comment.queue';
 /**
  * AddComment controller
  * user to create a new comment for a post and add it to the redis cache/mongoDB

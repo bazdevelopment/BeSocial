@@ -1,5 +1,5 @@
 import { DoneCallback, Job } from 'bull';
-import { AuthService } from 'shared/services/db/auth.service';
+import { AuthService } from '@src/shared/services/db/auth.service';
 
 export const AuthWorker = {
   addAuthUserToDB: async (job: Job, done: DoneCallback): Promise<void> => {

@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 
 import HTTP_STATUS from 'http-status-codes';
 import mongoose, { ObjectId } from 'mongoose';
-import { ReactionService } from 'shared/services/db/reaction.service';
-import { getReactionsFromCache, getSingleReactionByUsernameFromCache } from 'shared/services/redis/reaction.cache';
+import { ReactionService } from '@src/shared/services/db/reaction.service';
+import { getReactionsFromCache, getSingleReactionByUsernameFromCache } from '@src/shared/services/redis/reaction.cache';
 import { IReactionDocument } from '../interfaces/reaction.interface';
 
 /**

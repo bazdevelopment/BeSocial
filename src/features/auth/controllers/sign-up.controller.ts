@@ -1,15 +1,15 @@
 import { ObjectId } from 'mongodb';
 import { Request, Response } from 'express';
 import { AuthModel } from '../models/auth.model';
-import { BadRequestError } from 'middleware/error-middleware';
+import { BadRequestError } from '@src/middleware/error-middleware';
 import { IAuthDocument, ISignUpData } from '../interfaces/auth.interface';
 import HTTP_STATUS from 'http-status-codes';
 import { UploadApiResponse } from 'cloudinary';
-import { uploadImageToCloudinary } from 'shared/globals/helpers/cloudinary-upload';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
-import { saveUserToCache } from 'shared/services/redis/user.cache';
-import { authQueue } from 'shared/services/queues/auth.queue';
-import { userQueue } from 'shared/services/queues/user.queue';
+import { uploadImageToCloudinary } from '@src/shared/globals/helpers/cloudinary-upload';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { saveUserToCache } from '@src/shared/services/redis/user.cache';
+import { authQueue } from '@src/shared/services/queues/auth.queue';
+import { userQueue } from '@src/shared/services/queues/user.queue';
 import JWT from 'jsonwebtoken';
 
 /**

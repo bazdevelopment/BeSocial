@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 
 import HTTP_STATUS from 'http-status-codes';
 import { IReactionDocument, IReactionJob } from '../interfaces/reaction.interface';
-import { savePostReactionToCache } from 'shared/services/redis/reaction.cache';
-import { ReactionQueue } from 'shared/services/queues/reaction.queue';
+import { savePostReactionToCache } from '@src/shared/services/redis/reaction.cache';
+import { ReactionQueue } from '@src/shared/services/queues/reaction.queue';
 
 /**
  * Add reaction controller user for adding a reaction to a post

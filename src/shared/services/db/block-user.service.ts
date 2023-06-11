@@ -1,4 +1,4 @@
-import { UserModel } from 'features/user/models/user.model';
+import { UserModel } from '@src/features/user/models/user.model';
 import mongoose from 'mongoose';
 import { PushOperator } from 'mongodb';
 

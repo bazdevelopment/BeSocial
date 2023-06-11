@@ -1,9 +1,9 @@
 import express from 'express';
 
-import { verifyUser } from 'middleware/auth-middleware';
+import { verifyUser } from '@src/middleware/auth-middleware';
 import { addChatSchema, markChatSchema } from '../schemes/Chat';
 import { addChatMessage } from '../controllers/add-chat-message';
-import { joiValidation } from 'middleware/joi-validation';
+import { joiValidation } from '@src/middleware/joi-validation';
 import { getChatConversationMessage } from '../controllers/get-chat-messages';
 import { getChatMessages } from '../controllers/get-messages';
 import { deleteChatMessage } from '../controllers/delete-chat-message';

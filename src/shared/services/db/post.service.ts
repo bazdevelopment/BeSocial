@@ -1,6 +1,6 @@
-import { IGetPostsQuery, IPostDocument } from 'features/post/interfaces/post.interface';
-import { PostModel } from 'features/post/models/Post.model';
-import { UserModel } from 'features/user/models/user.model';
+import { IGetPostsQuery, IPostDocument } from '@src/features/post/interfaces/post.interface';
+import { PostModel } from '@src/features/post/models/Post.model';
+import { UserModel } from '@src/features/user/models/user.model';
 
 export const PostService = {
   addPostToDb: async (userId: string, createdPost: IPostDocument): Promise<void> => {

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
-import { ImageService } from 'shared/services/db/image.service';
+import { ImageService } from '@src/shared/services/db/image.service';
 import { IFileImageDocument } from '../interfaces/image.interface';
-import { BadRequestError } from 'middleware/error-middleware';
+import { BadRequestError } from '@src/middleware/error-middleware';
 
 /**
  * getImages controller

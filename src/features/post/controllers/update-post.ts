@@ -1,13 +1,13 @@
-import { getIOInstance } from 'config/socketIO';
+import { getIOInstance } from '@src/config/socketIO';
 import { Request, Response } from 'express';
 import { IPostDocument } from '../interfaces/post.interface';
-import { updatePostInCache } from 'shared/services/redis/post.cache';
-import { PostQueue } from 'shared/services/queues/post.queue';
+import { updatePostInCache } from '@src/shared/services/redis/post.cache';
+import { PostQueue } from '@src/shared/services/queues/post.queue';
 import HTTP_STATUS from 'http-status-codes';
 import { UploadApiResponse } from 'cloudinary';
-import { uploadImageToCloudinary, uploadVideoToCloudinary } from 'shared/globals/helpers/cloudinary-upload';
-import { BadRequestError } from 'middleware/error-middleware';
-import { imageQueue } from 'shared/services/queues/image.queue';
+import { uploadImageToCloudinary, uploadVideoToCloudinary } from '@src/shared/globals/helpers/cloudinary-upload';
+import { BadRequestError } from '@src/middleware/error-middleware';
+import { imageQueue } from '@src/shared/services/queues/image.queue';
 
 /* Helper for uploading an image to cloudinary */
 const uploadImage = async (image: string) => (await uploadImageToCloudinary(image)) as UploadApiResponse;

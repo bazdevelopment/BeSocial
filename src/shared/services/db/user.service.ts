@@ -1,9 +1,9 @@
-import { AuthModel } from 'features/auth/models/auth.model';
-import { IBasicInfo, INotificationSettings, ISearchUser, ISocialLinks, IUserDocument } from 'features/user/interfaces/user.interface';
-import { UserModel } from 'features/user/models/user.model';
+import { AuthModel } from '@src/features/auth/models/auth.model';
+import { IBasicInfo, INotificationSettings, ISearchUser, ISocialLinks, IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { UserModel } from '@src/features/user/models/user.model';
 import { ObjectId } from 'mongodb';
 import mongoose from 'mongoose';
-import { FollowService } from 'shared/services/db/follower.service';
+import { FollowService } from '@src/shared/services/db/follower.service';
 
 export const UserService = {
   createUser: async (data: IUserDocument): Promise<void> => {

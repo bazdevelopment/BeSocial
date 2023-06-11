@@ -1,4 +1,4 @@
-import { iSenderReceiver } from 'features/chat/interfaces/chat.interface';
+import { iSenderReceiver } from '@src/features/chat/interfaces/chat.interface';
 import { Server, Socket } from 'socket.io';
 import { connectedUsersMap } from './user';
 

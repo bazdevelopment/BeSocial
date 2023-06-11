@@ -1,6 +1,6 @@
 import { createBaseQueue } from './base.queue';
-import { FollowerWorker } from 'shared/workers/follower.worker';
-import { IFollowerJobData } from 'features/follower/interface/follower.interface';
+import { FollowerWorker } from '@src/shared/workers/follower.worker';
+import { IFollowerJobData } from '@src/features/follower/interface/follower.interface';
 
 /**
  * Follow queue

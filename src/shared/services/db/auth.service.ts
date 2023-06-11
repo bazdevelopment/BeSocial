@@ -1,5 +1,5 @@
-import { IAuthDocument } from 'features/auth/interfaces/auth.interface';
-import { AuthModel } from 'features/auth/models/auth.model';
+import { IAuthDocument } from '@src/features/auth/interfaces/auth.interface';
+import { AuthModel } from '@src/features/auth/models/auth.model';
 
 export const AuthService = {
   createAuthUser: async (data: IAuthDocument): Promise<void> => {

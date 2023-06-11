@@ -1,5 +1,5 @@
 import { DoneCallback, Job } from 'bull';
-import { FollowService } from 'shared/services/db/follower.service';
+import { FollowService } from '@src/shared/services/db/follower.service';
 
 /**
  * FollowerWorker

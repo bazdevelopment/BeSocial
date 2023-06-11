@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { verifyUser } from 'middleware/auth-middleware';
+import { verifyUser } from '@src/middleware/auth-middleware';
 import { blockUser, unblockUser } from '../controllers/block-user';
 
 const router = express.Router();

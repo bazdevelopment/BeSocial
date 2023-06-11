@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { saveFollowerToCache, updateFollowersCountInCache } from 'shared/services/redis/follower.cache';
+import { saveFollowerToCache, updateFollowersCountInCache } from '@src/shared/services/redis/follower.cache';
 import HTTP_STATUS from 'http-status-codes';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
-import { getUserFromCache } from 'shared/services/redis/user.cache';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { getUserFromCache } from '@src/shared/services/redis/user.cache';
 import { IFollowerData } from '../interface/follower.interface';
 import mongoose from 'mongoose';
-import { getIOInstance } from 'config/socketIO';
-import { followQueue } from 'shared/services/queues/follow.queue';
+import { getIOInstance } from '@src/config/socketIO';
+import { followQueue } from '@src/shared/services/queues/follow.queue';
 import { ObjectId } from 'mongodb';
 /**
  * followUser

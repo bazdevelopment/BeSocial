@@ -1,6 +1,6 @@
 import { createBaseQueue } from './base.queue';
-import { ReactionWorker } from 'shared/workers/reaction.worker';
-import { IReactionJob } from 'features/reaction/interfaces/reaction.interface';
+import { ReactionWorker } from '@src/shared/workers/reaction.worker';
+import { IReactionJob } from '@src/features/reaction/interfaces/reaction.interface';
 
 /**
  * Reaction queue

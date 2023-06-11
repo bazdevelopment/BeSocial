@@ -1,15 +1,15 @@
-import { IQueryReaction, IReactionDocument, IReactionJob } from 'features/reaction/interfaces/reaction.interface';
+import { IQueryReaction, IReactionDocument, IReactionJob } from '@src/features/reaction/interfaces/reaction.interface';
 import { getUserFromCache } from '../redis/user.cache';
-import { ReactionModel } from 'features/reaction/models/reaction.model';
-import { PostModel } from 'features/post/models/Post.model';
+import { ReactionModel } from '@src/features/reaction/models/reaction.model';
+import { PostModel } from '@src/features/post/models/Post.model';
 import mongoose from 'mongoose';
-import { INotificationDocument, INotificationTemplate } from 'features/notification/interfaces/notification.interface';
-import { NotificationModel } from 'features/notification/models/notification.model';
+import { INotificationDocument, INotificationTemplate } from '@src/features/notification/interfaces/notification.interface';
+import { NotificationModel } from '@src/features/notification/models/notification.model';
 import { notificationTemplate } from '../emails/templates/notifications/notification-template';
 import { emailQueue } from '../queues/email.queue';
-import { getIOInstance } from 'config/socketIO';
-import { IUserDocument } from 'features/user/interfaces/user.interface';
-import { IPostDocument } from 'features/post/interfaces/post.interface';
+import { getIOInstance } from '@src/config/socketIO';
+import { IUserDocument } from '@src/features/user/interfaces/user.interface';
+import { IPostDocument } from '@src/features/post/interfaces/post.interface';
 
 export const ReactionService = {
   addReactionDataToDB: async (reactionData: IReactionJob): Promise<void> => {

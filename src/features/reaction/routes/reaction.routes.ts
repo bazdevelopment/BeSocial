@@ -1,6 +1,6 @@
 import express from 'express';
-import { verifyUser } from 'middleware/auth-middleware';
-import { joiValidation } from 'middleware/joi-validation';
+import { verifyUser } from '@src/middleware/auth-middleware';
+import { joiValidation } from '@src/middleware/joi-validation';
 import { addReaction } from '../controllers/add-reaction';
 import { addReactionSchema } from '../schemes/reaction';
 import { removeReaction } from '../controllers/remove-reaction';

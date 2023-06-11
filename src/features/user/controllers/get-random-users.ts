@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import { IUserDocument } from '../interfaces/user.interface';
-import { getRandomUsersFromCache } from 'shared/services/redis/user.cache';
-import { UserService } from 'shared/services/db/user.service';
-import { BadRequestError } from 'middleware/error-middleware';
+import { getRandomUsersFromCache } from '@src/shared/services/redis/user.cache';
+import { UserService } from '@src/shared/services/db/user.service';
+import { BadRequestError } from '@src/middleware/error-middleware';
 
 /**
  * getRandomUsersSuggestions

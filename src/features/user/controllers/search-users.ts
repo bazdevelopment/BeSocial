@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import { ISearchUser } from '../interfaces/user.interface';
-import { UserService } from 'shared/services/db/user.service';
-import { escapeRegex } from 'shared/globals/helpers/escape-regex';
-import { BadRequestError } from 'middleware/error-middleware';
+import { UserService } from '@src/shared/services/db/user.service';
+import { escapeRegex } from '@src/shared/globals/helpers/escape-regex';
+import { BadRequestError } from '@src/middleware/error-middleware';
 
 /**
  * search users controllers

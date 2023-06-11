@@ -1,6 +1,6 @@
 import { DoneCallback, Job } from 'bull';
-import { BLOCK_UNBLOCK_ACTION } from 'constants/block-unblock';
-import { BlockOrUnblockUserService } from 'shared/services/db/block-user.service';
+import { BLOCK_UNBLOCK_ACTION } from '@src/constants/block-unblock';
+import { BlockOrUnblockUserService } from '@src/shared/services/db/block-user.service';
 
 /**
  * Block/unblock worker

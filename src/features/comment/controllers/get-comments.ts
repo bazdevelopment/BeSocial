@@ -6,8 +6,8 @@ import {
   getPostCommentsFromCache,
   getPostCommentsNamesFromCache,
   getSinglePostCommentFromCache
-} from 'shared/services/redis/comment.cache';
-import { CommentService } from 'shared/services/db/comment.service';
+} from '@src/shared/services/redis/comment.cache';
+import { CommentService } from '@src/shared/services/db/comment.service';
 
 /**
  * getCommentsForPost controller

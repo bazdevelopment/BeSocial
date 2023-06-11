@@ -1,5 +1,5 @@
 import { DoneCallback, Job } from 'bull';
-import { sendEmail } from 'shared/services/emails/mail.transport';
+import { sendEmail } from '@src/shared/services/emails/mail.transport';
 
 /**
  * Email worker used to call services for sending email functionality

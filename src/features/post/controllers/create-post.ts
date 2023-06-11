@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
-import { IPostDocument } from '../interfaces/post.interface';
+import { IPostDocument } from '../interfaces/post.interface.js';
 import { ObjectId } from 'mongodb';
-import { savePostToCache } from 'shared/services/redis/post.cache';
-import { getIOInstance } from 'config/socketIO';
-import { PostQueue } from 'shared/services/queues/post.queue';
-import { uploadImageToCloudinary } from 'shared/globals/helpers/cloudinary-upload';
+import { savePostToCache } from '@src/shared/services/redis/post.cache';
+import { getIOInstance } from '@src/config/socketIO';
+import { PostQueue } from '@src/shared/services/queues/post.queue';
+import { uploadImageToCloudinary } from '@src/shared/globals/helpers/cloudinary-upload';
 import { UploadApiResponse } from 'cloudinary';
-import { BadRequestError } from 'middleware/error-middleware';
-import { imageQueue } from 'shared/services/queues/image.queue';
+import { BadRequestError } from '@src/middleware/error-middleware';
+import { imageQueue } from '@src/shared/services/queues/image.queue';
 
 /**
  * createPost controller used to create a basic post without an image

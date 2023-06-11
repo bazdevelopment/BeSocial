@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 
 import { INotificationDocument } from '../interfaces/notification.interface';
-import { NotificationService } from 'shared/services/db/notification.service';
+import { NotificationService } from '@src/shared/services/db/notification.service';
 
 /**
  * getNotifications

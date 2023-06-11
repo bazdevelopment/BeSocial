@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { verifyUser } from 'middleware/auth-middleware';
+import { verifyUser } from '@src/middleware/auth-middleware';
 import { followUser } from '../controllers/follow-user';
 import { getFollowersUsers, getFollowingUsers } from '../controllers/get-followers';
 import { unfollowUser } from '../controllers/unfollow-user';

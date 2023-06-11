@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { removeFollowerFromCache, updateFollowersCountInCache } from 'shared/services/redis/follower.cache';
+import { removeFollowerFromCache, updateFollowersCountInCache } from '@src/shared/services/redis/follower.cache';
 import HTTP_STATUS from 'http-status-codes';
-import { followQueue } from 'shared/services/queues/follow.queue';
+import { followQueue } from '@src/shared/services/queues/follow.queue';
 /**
  * Utility function used to unfollow a specific user
  */

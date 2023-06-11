@@ -1,39 +1,41 @@
-import express, { json, urlencoded, Express, Request, Response } from 'express';
+import express, { json, urlencoded, Express, Request, Response, Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import helmet from 'helmet';
 import hpp from 'hpp';
+import http from 'http';
 import cookieSession from 'cookie-session';
 import compression from 'compression';
 import 'express-async-errors';
 import dotenv from 'dotenv';
-import connectDB from './config/db';
-import { createSocketIoServer } from './config/socketIO';
+import apiStats from 'swagger-stats';
+import connectDB from '@src/config/db';
+import { createSocketIoServer } from '@src/config/socketIO';
 import { Server } from 'socket.io';
-import { errorHandler, notFound } from './middleware/error-middleware';
-import { HTTP_METHODS } from './constants/httpMethods';
-import cloudinaryConfig from 'config/cloudinary';
-import authRoutes from './features/auth/routes/auth.routes';
-import postsRoutes from './features/post/routes/post.routes';
-import postReactionRoutes from './features/reaction/routes/reaction.routes';
-import postCommentRoutes from './features/comment/routes/comment.routes';
-import userFollowRoutes from './features/follower/routes/follower.routes';
-import userBlockRoutes from './features/block/routes/block.routes';
-import notificationRoutes from './features/notification/routes/notification.routes';
-import imagesRoutes from './features/image/routes/image.routes';
-import chatRoutes from './features/chat/routes/chat.routes';
-import userRoutes from './features/user/routes/user.routes';
+import { errorHandler, notFound } from '@src/middleware/error-middleware';
+import cloudinaryConfig from '@src/config/cloudinary';
+import authRoutes from '@src/features/auth/routes/auth.routes';
+import postsRoutes from '@src/features/post/routes/post.routes';
+import postReactionRoutes from '@src/features/reaction/routes/reaction.routes';
+import postCommentRoutes from '@src/features/comment/routes/comment.routes';
+import userFollowRoutes from '@src/features/follower/routes/follower.routes';
+import userBlockRoutes from '@src/features/block/routes/block.routes';
+import notificationRoutes from '@src/features/notification/routes/notification.routes';
+import imagesRoutes from '@src/features/image/routes/image.routes';
+import chatRoutes from '@src/features/chat/routes/chat.routes';
+import userRoutes from '@src/features/user/routes/user.routes';
 
-import { connectRedisCache } from 'shared/services/redis/redis.connection';
-import { serverAdapter } from 'shared/services/queues/base.queue';
-import { listenToSocketIoPost } from 'shared/sockets/post';
-import { listenToSocketIoFollower } from 'shared/sockets/follower';
-import { listenToSocketIoUser } from 'shared/sockets/user';
-import { listenToSocketIoChat } from 'shared/sockets/chat';
+import { connectRedisCache } from '@src/shared/services/redis/redis.connection';
+import { serverAdapter } from '@src/shared/services/queues/base.queue';
+import { listenToSocketIoPost } from '@src/shared/sockets/post';
+import { listenToSocketIoFollower } from '@src/shared/sockets/follower';
+import { listenToSocketIoUser } from '@src/shared/sockets/user';
+import { listenToSocketIoChat } from '@src/shared/sockets/chat';
+import { HTTP_METHODS } from '@src/constants/httpMethods';
 /* Enabling .env file */
 dotenv.config();
 const PORT = process.env.PORT;
-export const app: Express = express();
+let app: Express = express();
 
 /**
  * logging any request that is made to the server. E.g. GET / 304 4.140 ms - -
@@ -80,20 +82,21 @@ app.use(
 app.use(hpp());
 /* Secure header HTTP */
 app.use(helmet());
+/**
+ * enabled api monitoring using 'swagger-stats' library
+ * consider using another library like grafana/data dog for production grade environment
+ */
+app.use(
+  apiStats.getMiddleware({
+    uriPath: '/api-monitoring'
+  })
+);
 /* Make sure that connection with MongoDB database is ready */
 connectDB();
 /* Make sure that connection with Redis server is ready */
 connectRedisCache();
 /* Make sure that connection with Cloudinary is ready */
 cloudinaryConfig();
-/* Make sure that connection with SocketIO and Redis is ready */
-createSocketIoServer().then((io: Server) => {
-  console.log('⚡️ [SocketIO] SocketIO & Redis connection done ✅');
-  listenToSocketIoPost(io);
-  listenToSocketIoFollower(io);
-  listenToSocketIoUser(io);
-  listenToSocketIoChat(io);
-});
 
 /* Test if server is running */
 app.get('/', (_req: Request, res: Response) => {
@@ -115,4 +118,34 @@ app.use('/api/v1/user', userRoutes);
 app.use(notFound);
 app.use(errorHandler);
 /* Listen when server starts */
-app.listen(PORT, () => console.log(`⚡️ [server]: running on port ${PORT}`));
+const startHttpServer = (app: http.Server) => {
+  console.info(`Worker with process id of ${process.pid} has started...`);
+  app.listen(PORT, () => console.log(`⚡️ [server]: running on port ${PORT}`));
+};
+
+const socketIoConnections = (io: Server) => {
+  console.log('⚡️ [SocketIO] SocketIO & Redis connection done ✅');
+  listenToSocketIoPost(io);
+  listenToSocketIoFollower(io);
+  listenToSocketIoUser(io);
+  listenToSocketIoChat(io);
+};
+
+const startServer = async (app: Application): Promise<void> => {
+  // if (!process.env.JWT_TOKEN) {
+  //   throw new Error('JWT_TOKEN must be provided');
+  // }
+  try {
+    /* Make sure that server is started*/
+    const httpServer: http.Server = new http.Server(app);
+    /* Make sure that connection with SocketIO and Redis is ready */
+    const socketIO: Server = await createSocketIoServer(httpServer);
+    startHttpServer(httpServer);
+    socketIoConnections(socketIO);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// export const initializeServer = () => startServer(app);
+startServer(app);

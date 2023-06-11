@@ -1,4 +1,4 @@
-import { IReactions } from 'features/reaction/interfaces/reaction.interface';
+import { IReactions } from '@src/features/reaction/interfaces/reaction.interface';
 import mongoose, { Document, ObjectId } from 'mongoose';
 
 export interface IPostDocument extends Document {

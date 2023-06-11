@@ -1,8 +1,8 @@
 import express from 'express';
-import { joiValidation } from 'middleware/joi-validation';
+import { joiValidation } from '@src/middleware/joi-validation';
 
 import { addImageSchema } from '../schemes/image';
-import { verifyUser } from 'middleware/auth-middleware';
+import { verifyUser } from '@src/middleware/auth-middleware';
 import { addBackgroundImage, addProfilePicture } from '../controllers/add-image';
 import { deleteBackgroundImage, deleteProfilePicture } from '../controllers/delete-image';
 import { getImages } from '../controllers/get-images';

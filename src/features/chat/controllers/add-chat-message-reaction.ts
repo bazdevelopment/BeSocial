@@ -2,10 +2,10 @@ import { Request, Response } from 'express';
 
 import HTTP_STATUS from 'http-status-codes';
 import { IMessageData } from '../interfaces/chat.interface';
-import { addMessageReactionInCache } from 'shared/services/redis/chat.cache';
+import { addMessageReactionInCache } from '@src/shared/services/redis/chat.cache';
 import mongoose from 'mongoose';
-import { getIOInstance } from 'config/socketIO';
-import { ChatQueue } from 'shared/services/queues/chat.queue';
+import { getIOInstance } from '@src/config/socketIO';
+import { ChatQueue } from '@src/shared/services/queues/chat.queue';
 
 /**
  *  addChatMessageReaction

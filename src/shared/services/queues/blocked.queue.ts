@@ -1,6 +1,6 @@
 import { createBaseQueue } from './base.queue';
-import { IBlockedUserJobData } from 'features/follower/interface/follower.interface';
-import { BlockOrUnblockUserWorker } from 'shared/workers/blocked.worker';
+import { IBlockedUserJobData } from '@src/features/follower/interface/follower.interface';
+import { BlockOrUnblockUserWorker } from '@src/shared/workers/blocked.worker';
 
 /**
  * Blocked queue

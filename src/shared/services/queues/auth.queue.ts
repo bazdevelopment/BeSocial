@@ -1,5 +1,5 @@
-import { IAuthJob } from 'features/auth/interfaces/auth.interface';
-import { AuthWorker } from 'shared/workers/auth.worker';
+import { IAuthJob } from '@src/features/auth/interfaces/auth.interface';
+import { AuthWorker } from '@src/shared/workers/auth.worker';
 import { createBaseQueue } from './base.queue';
 
 /**

@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 
 import HTTP_STATUS from 'http-status-codes';
 import { IReactionJob } from '../interfaces/reaction.interface';
-import { ReactionQueue } from 'shared/services/queues/reaction.queue';
-import { removePostReactionFromCache } from 'shared/services/redis/reaction.cache';
+import { ReactionQueue } from '@src/shared/services/queues/reaction.queue';
+import { removePostReactionFromCache } from '@src/shared/services/redis/reaction.cache';
 
 export const removeReaction = async (req: Request, res: Response): Promise<void> => {
   /* req.params returns only strings */

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { getChatMessagesFromCache } from 'shared/services/redis/chat.cache';
+import { getChatMessagesFromCache } from '@src/shared/services/redis/chat.cache';
 import { IMessageData } from '../interfaces/chat.interface';
-import { ChatService } from 'shared/services/db/chat.service';
+import { ChatService } from '@src/shared/services/db/chat.service';
 import HTTP_STATUS from 'http-status-codes';
 import mongoose from 'mongoose';
 

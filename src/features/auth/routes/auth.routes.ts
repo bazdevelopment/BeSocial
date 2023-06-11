@@ -1,6 +1,6 @@
 import express from 'express';
-import { verifyUser } from 'middleware/auth-middleware';
-import { joiValidation } from 'middleware/joi-validation';
+import { verifyUser } from '@src/middleware/auth-middleware';
+import { joiValidation } from '@src/middleware/joi-validation';
 import { getCurrentLoggedInUser } from '../controllers/current-users.controller';
 import { generateResetPasswordLink, updatePassword } from '../controllers/forgot-password';
 import { signIn } from '../controllers/sign-in.controller';

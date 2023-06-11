@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
-import { getIOInstance } from 'config/socketIO';
-import { NotificationQueue } from 'shared/services/queues/notification.queue';
+import { getIOInstance } from '@src/config/socketIO';
+import { NotificationQueue } from '@src/shared/services/queues/notification.queue';
 /**
 * readNotification
  * This controller function is responsible for reading a notification.

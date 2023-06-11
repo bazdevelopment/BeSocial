@@ -1,9 +1,9 @@
 import express from 'express';
-import { joiValidation } from 'middleware/joi-validation';
+import { joiValidation } from '@src/middleware/joi-validation';
 import { createPost, createPostWithImage } from '../controllers/create-post';
 import { postImageScheme, postScheme, postVideoScheme } from '../schemes/post.scheme';
 import { getPosts, getPostsWithImages } from '../controllers/get-posts';
-import { verifyUser } from 'middleware/auth-middleware';
+import { verifyUser } from '@src/middleware/auth-middleware';
 import { deletePost } from '../controllers/delete-post';
 import { updatePostWithVideo, updatePost, updatePostWithImage } from '../controllers/update-post';
 

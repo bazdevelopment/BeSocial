@@ -1,5 +1,5 @@
 import { DoneCallback, Job } from 'bull';
-import { ReactionService } from 'shared/services/db/reaction.service';
+import { ReactionService } from '@src/shared/services/db/reaction.service';
 
 export const ReactionWorker = {
   addReactionToDB: async (job: Job, done: DoneCallback): Promise<void> => {

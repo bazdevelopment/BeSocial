@@ -2,9 +2,9 @@ import nodemailer from 'nodemailer';
 import sendGrid from '@sendgrid/mail';
 import Mail from 'nodemailer/lib/mailer';
 import { IMailOptions } from './mail.interface';
-// import { BadRequestError } from 'middleware/error-middleware';
-import { ENVIRONMENTS } from 'constants/environment';
-import { ServerError } from 'middleware/error-middleware';
+// import { BadRequestError } from '@src/middleware/error-middleware';
+import { ENVIRONMENTS } from '@src/constants/environment';
+import { ServerError } from '@src/middleware/error-middleware';
 
 /**
  * Method used to send an email to a specific email address
