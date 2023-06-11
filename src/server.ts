@@ -32,10 +32,11 @@ import { listenToSocketIoFollower } from '@src/shared/sockets/follower';
 import { listenToSocketIoUser } from '@src/shared/sockets/user';
 import { listenToSocketIoChat } from '@src/shared/sockets/chat';
 import { HTTP_METHODS } from '@src/constants/httpMethods';
+import { handleExit } from './app';
 /* Enabling .env file */
 dotenv.config();
 const PORT = process.env.PORT;
-let app: Express = express();
+const app: Express = express();
 
 /**
  * logging any request that is made to the server. E.g. GET / 304 4.140 ms - -
@@ -149,3 +150,4 @@ const startServer = async (app: Application): Promise<void> => {
 
 // export const initializeServer = () => startServer(app);
 startServer(app);
+handleExit();
