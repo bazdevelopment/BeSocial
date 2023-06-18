@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IQueryReaction, IReactionDocument, IReactionJob } from '@src/features/reaction/interfaces/reaction.interface';
 import { getUserFromCache } from '../redis/user.cache';
 import { ReactionModel } from '@src/features/reaction/models/reaction.model';

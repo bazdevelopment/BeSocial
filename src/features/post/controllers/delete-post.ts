@@ -10,8 +10,12 @@ import { deletePostFromCache } from '@src/shared/services/redis/post.cache';
 
 export const deletePost = async (req: Request, res: Response): Promise<void> => {
   const socketIo = getIOInstance();
+  if (!req.currentUser) {
+    res.status(HTTP_STATUS.BAD_REQUEST).json({ message: 'Logged in user is not existing' });
+    return;
+  }
   socketIo.emit('delete post', req.params.postId);
-  await deletePostFromCache(req.params.postId!, req.currentUser?.userId!);
+  await deletePostFromCache(req.params.postId!, req.currentUser.userId);
   PostQueue().addPostJob('deletePostFromDB', { postId: req.params.postId, userId: req.currentUser?.userId });
   res.status(HTTP_STATUS.OK).json({ message: 'Post deleted successfully! ✅' });
 };

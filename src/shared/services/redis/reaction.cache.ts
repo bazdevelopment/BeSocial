@@ -32,7 +32,7 @@ export const savePostReactionToCache = async ({
     }
   } catch (error) {
     console.log('[reaction.cache-savePostReactionToCache] : Server error');
-    ServerError("[reaction.cache-savePostReactionToCache] : Server error'");
+    ServerError('[reaction.cache-savePostReactionToCache] : Server error');
   }
 };
 
@@ -61,7 +61,7 @@ export const removePostReactionFromCache = async ({
     await client.HSET(`posts:${key}`, 'reactions', JSON.stringify(postReactions));
   } catch (error) {
     console.log('[reaction.cache-removePostReactionFromCache] : Server error');
-    ServerError("[reaction.cache-removePostReactionFromCache] : Server error'");
+    ServerError('[reaction.cache-removePostReactionFromCache] : Server error');
   }
 };
 

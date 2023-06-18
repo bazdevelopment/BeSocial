@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import { ICommentDocument, ICommentJob } from '../interfaces/comment.interface';

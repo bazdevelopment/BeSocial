@@ -51,7 +51,7 @@ export const getSingleReactionByUsername = async (req: Request, res: Response): 
  */
 export const getReactionsByUsername = async (req: Request, res: Response): Promise<void> => {
   const { username } = req.params;
-  const reactions: IReactionDocument[] = !!username ? await ReactionService.getReactionsByUsername(username) : [];
+  const reactions: IReactionDocument[] = username ? await ReactionService.getReactionsByUsername(username) : [];
 
   res.status(HTTP_STATUS.OK).json({
     message: 'All user reactions by username !',

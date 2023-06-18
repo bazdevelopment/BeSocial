@@ -22,7 +22,7 @@ export const removeReaction = async (req: Request, res: Response): Promise<void>
 
   const databaseReactionData: IReactionJob = {
     postId,
-    username: req.currentUser?.username!,
+    username: req.currentUser.username,
     previousReaction
   } as IReactionJob;
 

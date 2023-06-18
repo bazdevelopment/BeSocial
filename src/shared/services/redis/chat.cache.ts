@@ -18,7 +18,7 @@ export const addChatListToCache = async (senderId: string, receiverId: string, c
     }
   } catch (error) {
     console.log('[chat.cache-addChatListToCache] : Server error');
-    ServerError("[chat.cache-addChatListToCache] : Server error'");
+    ServerError('[chat.cache-addChatListToCache] : Server error');
   }
 };
 
@@ -34,7 +34,7 @@ export const addChatMessageToCache = async (conversationId: string, message: IMe
     await client.RPUSH(`messages:${conversationId}`, JSON.stringify(message));
   } catch (error) {
     console.log('[chat.cache-addChatMessageToCache] : Server error');
-    ServerError("[chat.cache-addChatMessageToCache] : Server error'");
+    ServerError('[chat.cache-addChatMessageToCache] : Server error');
   }
 };
 
@@ -59,7 +59,7 @@ export const getUserConversationListFromCache = async (userId: string): Promise<
     return conversationChatList;
   } catch (error) {
     console.log('[chat.cache-getUserConversationListFromCache] : Server error');
-    return ServerError("[chat.cache-getUserConversationListFromCache] : Server error'");
+    return ServerError('[chat.cache-getUserConversationListFromCache] : Server error');
   }
 };
 
@@ -86,7 +86,7 @@ export const getChatMessagesFromCache = async (senderId: string, receiverId: str
     return [];
   } catch (error) {
     console.log('[chat.cache-getUserConversationList] : Server error');
-    return ServerError("[chat.cache-getUserConversationList] : Server error'");
+    return ServerError('[chat.cache-getUserConversationList] : Server error');
   }
 };
 
@@ -129,7 +129,7 @@ export const markMessageAsDeletedInCache = async ({
     return JSON.parse(lastMessage) as IMessageData;
   } catch (error) {
     console.log('[chat.cache-markMessageAsDeletedInCache] : Server error');
-    return ServerError("[chat.cache-markMessageAsDeletedInCache] : Server error'");
+    return ServerError('[chat.cache-markMessageAsDeletedInCache] : Server error');
   }
 };
 
@@ -159,7 +159,7 @@ export const markMessagesAsRead = async (senderId: string, receiverId: string): 
     return JSON.parse(lastMessage);
   } catch (error) {
     console.log('[chat.cache-markMessagesAsRead] : Server error');
-    return ServerError("[chat.cache-markMessagesAsRead] : Server error'");
+    return ServerError('[chat.cache-markMessagesAsRead] : Server error');
   }
 };
 /**
@@ -206,7 +206,7 @@ export const addMessageReactionInCache = async ({
     return JSON.parse(updatedMessage);
   } catch (error) {
     console.log('[chat.cache-addMessageReaction] : Server error');
-    return ServerError("[chat.cache-addMessageReaction] : Server error'");
+    return ServerError('[chat.cache-addMessageReaction] : Server error');
   }
 };
 /**

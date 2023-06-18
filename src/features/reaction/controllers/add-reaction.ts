@@ -11,6 +11,7 @@ import { ReactionQueue } from '@src/shared/services/queues/reaction.queue';
  */
 export const addReaction = async (req: Request, res: Response): Promise<void> => {
   const { postId, type, userTo, previousReaction, postReactions, profilePicture } = req.body;
+
   const reaction: IReactionDocument = {
     postId,
     type,
@@ -19,13 +20,18 @@ export const addReaction = async (req: Request, res: Response): Promise<void> =>
     profilePicture
   } as unknown as IReactionDocument;
 
+  if (!req.currentUser) {
+    res.status(HTTP_STATUS.BAD_REQUEST).json({ message: 'Logged in user is not existing' });
+    return;
+  }
+
   await savePostReactionToCache({ key: postId, reaction, postReactions, type, previousReaction });
 
   const databaseReactionData: IReactionJob = {
     postId,
     userTo,
-    userFrom: req.currentUser?.userId,
-    username: req.currentUser?.username!,
+    userFrom: req.currentUser.userId,
+    username: req.currentUser.username,
     type,
     previousReaction,
     reactionObject: reaction

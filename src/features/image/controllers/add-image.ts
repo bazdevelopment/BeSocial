@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { Request, Response } from 'express';
 import { IUserDocument } from '@src/features/user/interfaces/user.interface';
 import { updatePropertyInUserCache } from '@src/shared/services/redis/user.cache';
