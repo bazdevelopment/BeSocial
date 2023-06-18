@@ -151,8 +151,8 @@ jobs:
     docker:
       - image: circleci/node:latest
     environment:
-      VERCEL_ORG_ID: $VERCEL_ORG_ID
-      VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID
+      VERCEL_ORG_ID: qwF5Veq92Uxi0TOUsZiNfcYA
+      VERCEL_PROJECT_ID: prj_XuJhJZ2vGtIe0fxweItKfVFpCzRG
     steps:
       - checkout
       - run:
@@ -160,20 +160,20 @@ jobs:
           command: sudo npm install -g vercel@latest
       - run:
           name: Pull Vercel Environment Information
-          command: vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+          command: vercel pull --yes --environment=preview --token=72MRSqoYAom1tvwzeRTbjJj3
       - run:
           name: Build Project Artifacts
-          command: vercel build --token=$VERCEL_TOKEN
+          command: vercel build --token=72MRSqoYAom1tvwzeRTbjJj3
       - run:
           name: Deploy Project Artifacts to Vercel
-          command: vercel deploy --prebuilt --token=$VERCEL_TOKEN
+          command: vercel deploy --prebuilt --token=72MRSqoYAom1tvwzeRTbjJj3
 
   production_deployment_job:
     docker:
       - image: circleci/node:latest
     environment:
-      VERCEL_ORG_ID: $VERCEL_ORG_ID
-      VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID
+      VERCEL_ORG_ID: qwF5Veq92Uxi0TOUsZiNfcYA
+      VERCEL_PROJECT_ID: prj_XuJhJZ2vGtIe0fxweItKfVFpCzRG
     steps:
       - checkout
       - run:
@@ -181,13 +181,13 @@ jobs:
           command: npm install --global vercel@latest
       - run:
           name: Pull Vercel Environment Information
-          command: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+          command: vercel pull --yes --environment=production --token=72MRSqoYAom1tvwzeRTbjJj3
       - run:
           name: Build Project Artifacts
-          command: vercel build --prod --token=$VERCEL_TOKEN
+          command: vercel build --prod --token=72MRSqoYAom1tvwzeRTbjJj3
       - run:
           name: Deploy Project Artifacts to Vercel
-          command: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+          command: vercel deploy --prebuilt --prod --token=72MRSqoYAom1tvwzeRTbjJj3
 
 
   notify-via-slack:
@@ -287,15 +287,15 @@ workflows:
       #           - staging
       #           - main
       -  development_deployment_job:
-          # requires:
-          #   - unit-test
+          requires:
+            - linting
           filters:
             branches:
               only:
                 - develop
       -  production_deployment_job:
-          # requires:
-          #   - unit-test
+          requires:
+            - linting
           filters:
             branches:
               only:
