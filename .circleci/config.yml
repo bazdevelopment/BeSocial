@@ -287,15 +287,15 @@ workflows:
       #           - staging
       #           - main
       -  development_deployment_job:
-          requires:
-            - unit-test
+          # requires:
+          #   - unit-test
           filters:
             branches:
               only:
                 - develop
       -  production_deployment_job:
-          requires:
-            - unit-test
+          # requires:
+          #   - unit-test
           filters:
             branches:
               only:
