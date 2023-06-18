@@ -20,7 +20,7 @@ export const savePostCommentToCache = async (postId: string, comment: string): P
     await client.HSET(`posts:${postId}`, dataToSave);
   } catch (error) {
     console.log('[comment.cache-savePostCommentToCache] : Server error');
-    ServerError('[comment.cache-savePostCommentToCache] : Server error\'');
+    ServerError('[comment.cache-savePostCommentToCache] : Server error');
   }
 };
 
@@ -42,7 +42,7 @@ export const getPostCommentsFromCache = async (postId: string): Promise<IComment
     return commentsList;
   } catch (error) {
     console.log('[post.cache-getPostCommentsFromCache] : Server error');
-    return ServerError('[post.cache-getPostCommentsFromCache] : Server error\'');
+    return ServerError('[post.cache-getPostCommentsFromCache] : Server error');
   }
 };
 
@@ -67,7 +67,7 @@ export const getPostCommentsNamesFromCache = async (postId: string): Promise<ICo
     return [{ count: commentsCount, names: commentsNameList }];
   } catch (error) {
     console.log('[post.cache-getPostCommentsNamesFromCache] : Server error');
-    return ServerError('[post.cache-getPostCommentsNamesFromCache] : Server error\'');
+    return ServerError('[post.cache-getPostCommentsNamesFromCache] : Server error');
   }
 };
 
@@ -91,6 +91,6 @@ export const getSinglePostCommentFromCache = async (postId: string, commentId: s
     return [commentSearched as ICommentDocument];
   } catch (error) {
     console.log('[post.cache-getSinglePostCommentFromCache] : Server error');
-    return ServerError('[post.cache-getSinglePostCommentFromCache] : Server error\'');
+    return ServerError('[post.cache-getSinglePostCommentFromCache] : Server error');
   }
 };

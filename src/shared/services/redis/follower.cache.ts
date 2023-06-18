@@ -17,7 +17,7 @@ export const saveFollowerToCache = async (key: string, value: string): Promise<v
     await client.LPUSH(key, value);
   } catch (error) {
     console.log('[follower.cache-saveFollowerToCache] : Server error');
-    ServerError('[follower.cache-saveFollowerToCache] : Server error\'');
+    ServerError('[follower.cache-saveFollowerToCache] : Server error');
   }
 };
 
@@ -32,7 +32,7 @@ export const removeFollowerFromCache = async (key: string, value: string): Promi
     await client.LREM(key, 1, value);
   } catch (error) {
     console.log('[follower.cache-removeFollowerFromCache] : Server error');
-    ServerError('[follower.cache-removeFollowerFromCache] : Server error\'');
+    ServerError('[follower.cache-removeFollowerFromCache] : Server error');
   }
 };
 
@@ -47,7 +47,7 @@ export const updateFollowersCountInCache = async (userId: string, propertyName: 
     await client.HINCRBY(`users:${userId}`, propertyName, value);
   } catch (error) {
     console.log('[follower.cache-updateFollowersCountInCache] : Server error');
-    ServerError('[follower.cache-updateFollowersCountInCache] : Server error\'');
+    ServerError('[follower.cache-updateFollowersCountInCache] : Server error');
   }
 };
 
@@ -84,7 +84,7 @@ export const getFollowersOrFollowingFromCache = async (key: string): Promise<IFo
     return followersList;
   } catch (error) {
     console.log('[follower.cache-getFollowersFromCache] : Server error');
-    return ServerError('[follower.cache-getFollowersFromCache] : Server error\'');
+    return ServerError('[follower.cache-getFollowersFromCache] : Server error');
   }
 };
 
@@ -121,6 +121,6 @@ export const updateBlockedUserInCache = async ({
     await client.HSET(`users:${userId}`, dataToSave);
   } catch (error) {
     console.log('[follower.cache-updateBlockedUserInCache] : Server error');
-    return ServerError('[follower.cache-updateBlockedUserInCache] : Server error\'');
+    return ServerError('[follower.cache-updateBlockedUserInCache] : Server error');
   }
 };
