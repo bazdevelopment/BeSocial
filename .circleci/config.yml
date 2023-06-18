@@ -258,10 +258,10 @@ workflows:
   version: 2
   development_and_production:
     jobs:
-      - build
+      - install-dependencies
       - linting:
          requires:
-            - build
+            - install-dependencies
          filters:
             branches:
               only:
