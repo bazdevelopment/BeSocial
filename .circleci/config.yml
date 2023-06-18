@@ -157,7 +157,7 @@ jobs:
       - checkout
       - run:
           name: Install Babel CLI
-          command: npm install --global @babel/cli
+          command: sudo npm install --global @babel/cli
       - run:
           name: Install Vercel CLI
           command: sudo npm install -g vercel@latest
@@ -170,6 +170,8 @@ jobs:
       - run:
           name: Deploy Project Artifacts to Vercel
           command: vercel deploy --prebuilt --token=72MRSqoYAom1tvwzeRTbjJj3
+      - *notify-on-fail
+
 
   production_deployment_job:
     docker:
@@ -191,6 +193,7 @@ jobs:
       - run:
           name: Deploy Project Artifacts to Vercel
           command: vercel deploy --prebuilt --prod --token=72MRSqoYAom1tvwzeRTbjJj3
+      - *notify-on-fail
 
 
   notify-via-slack:
